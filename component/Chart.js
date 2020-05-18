@@ -10,7 +10,7 @@ export default class Chart extends Component {
         return (
             <View style={styles.chart}>
                 <View >
-                    <Text style={styles.chartTop}>Diagram</Text>
+                    <Text style={styles.chartTop}>Cost chart</Text>
                 </View>
      
                 <LineChart
@@ -58,14 +58,15 @@ const line = {
 };
 
 const chartConfig = {
-    backgroundColor: '#CCD1D1',
-    backgroundGradientFrom: '#CCD1D1',
+    // backgroundColor: '#CCD1D1',
+    backgroundGradientFrom: '#F4F5F5',
     backgroundGradientTo: '#CCD1D1',
     decimalPlaces: 1, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(94, 44, 2, ${opacity})`,
     style: {
-        borderRadius: 15
+        borderRadius: 15,
+        
     }
 
 }

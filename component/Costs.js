@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import moment from 'moment';
 
-
-export default class Header extends Component {
+export default class Coast extends Component {
     constructor(){
         super()
         this.state = {
@@ -12,25 +12,25 @@ export default class Header extends Component {
     }
 
     render () {
+        const month = moment().format("MMMM YYYY");;
         return (
-            <View style={styles.headerTop}>
-                
-                <Text style={styles.title}>Expenses: {this.state.dashboardName} </Text> 
-                {/* <Picker
-                    selectedValue={this.state.dashboardName}
-                    style={styles.picker}
-                    onValueChange={(itemValue, itemIndex) => this.setState.dashboardName(itemValue)}>
-                    <Picker.Item label="Family" value="Family" />
-                    <Picker.Item label="Work" value="Work" />
-                </Picker> */}
-                <View style={styles.icons}>
+            <View style={styles.costs}>
+                <View style={styles.data}>
+                    <Text style={styles.title}>{month}</Text>
+                    <Text style={styles.total}>{this.state.costs} SEK</Text>
+                </View>
+                <View style={styles.data}>
+                    <Text style={styles.title}>All expenses</Text>
+                    {/* <Text style={styles.title}>{this.state.costs} SEK</Text> */}
+                </View>
+                {/* <View style={styles.icons}>
                     <TouchableOpacity onPress={this.editHandler}>
                         <Feather name="edit" size={30} color="white" />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.plusHandler}>
                         <Entypo name="plus" size={30} color="white" />
                     </TouchableOpacity>
-                </View>
+                </View> */}
                     
 
                 
@@ -40,13 +40,18 @@ export default class Header extends Component {
 }
 
 const styles = StyleSheet.create({
-    headerTop: {
-        backgroundColor:'#85C1E9',
-        paddingTop:20,
-        height:80,
-        flexDirection:'row', 
-        flexWrap:'wrap',
-        justifyContent: 'center',
+    costs: {
+        flex:1,
+        flexDirection:'row',
+        padding:10,
+    },
+    data: {
+        flex:2,
+        backgroundColor:'green',
+        width:wp('50%'),
+        margin:2,
+        borderRadius:10,
+        height: hp('10%'),
     },
     title:  {
         textAlign: 'center',
@@ -54,13 +59,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
-    icons:{
-        paddingLeft:10,
-        flexWrap:'wrap',
-    },
-    picker: {
-        height:5,
-        width:'auto',
-        color: '#fff',
+    total:{
+        padding:10,
+        // paddingTop:10,
+        // paddingBottom:10,
+        color:'red',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
     }
   });

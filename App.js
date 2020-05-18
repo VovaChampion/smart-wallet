@@ -5,6 +5,7 @@ import {setJSExceptionHandler} from 'react-native-exception-handler';
 import Header from './component/Header';
 import Footer from './component/Footer';
 import Chart from './component/Chart';
+import Coast from './component/Costs';
 
 
 export default function App() {
@@ -18,7 +19,7 @@ export default function App() {
       </View>
       
       <View style={styles.content}>
-        <Text>Some text</Text>
+        <Coast />
       </View>
 
       <View style={styles.chart}>
@@ -41,20 +42,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    // paddingTop:15,
     marginTop:hp('5%'),
-    flex: 0.15,
+    flex: 1,
     width:wp('100%'),
   },
   content: {
-    flex: 0.3,
+    flex: 2,
     width:wp('100%'),
   },
   chart: {
-    flex: 0.4,
+    flex: 3,
   },
   footer: {
-    flex: 0.15,
+    flex: 1,
     width:wp('100%'),
   },
 });
