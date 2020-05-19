@@ -23,7 +23,6 @@ export default class Costs extends Component {
                 </View>
                 <View style={styles.data}>
                     <Text style={styles.title}>All expenses</Text>
-                    {/* <Text style={styles.title}>{this.state.costs} SEK</Text> */}
                 </View>
                 {/* <View style={styles.icons}>
                     <TouchableOpacity onPress={this.editHandler}>
@@ -32,10 +31,7 @@ export default class Costs extends Component {
                     <TouchableOpacity onPress={this.plusHandler}>
                         <Entypo name="plus" size={30} color="white" />
                     </TouchableOpacity>
-                </View> */}
-                    
-
-                
+                </View> */}  
             </View>
         );
     }

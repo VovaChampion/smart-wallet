@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
         width:'auto',
         color: '#fff',
     }
-  });
+});
