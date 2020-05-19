@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   });
 
 const line = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','August', 'September'],
     datasets: [
       {
         data: [29, 45, 38, 80, 99, 43, 50],

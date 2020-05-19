@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import moment from 'moment';
+// import YearMonthForm from './Month';
 
-export default class Coast extends Component {
-    constructor(){
-        super()
-        this.state = {
-            costs:'10000'
-        }
+export default class Costs extends Component {
+    constructor(props){
+        super(props)
+        // this.state = {
+        //     costs:'0'
+        // }
     }
 
     render () {
@@ -16,8 +17,9 @@ export default class Coast extends Component {
         return (
             <View style={styles.costs}>
                 <View style={styles.data}>
+                    {/* <YearMonthForm /> */}
                     <Text style={styles.title}>{month}</Text>
-                    <Text style={styles.total}>{this.state.costs} SEK</Text>
+                    <Text style={styles.total}>{this.props.costs} SEK</Text>
                 </View>
                 <View style={styles.data}>
                     <Text style={styles.title}>All expenses</Text>
