@@ -7,19 +7,29 @@ import moment from 'moment';
 export default class Costs extends Component {
     constructor(props){
         super(props)
-        // this.state = {
-        //     costs:'0'
-        // }
+        this.state = {
+            month: moment().format("MMMM YYYY")
+        }
+
+        // this.showList = this.showList.bind(this);
     }
 
+    // showList = () => {
+    //     this.props.navigation.navigate('CostsList');
+    // }
+   
+
     render () {
-        const month = moment().format("MMMM YYYY");;
+        // console.log(this.props);
+        
         return (
             <View style={styles.costs}>
                 <View style={styles.data}>
-                    {/* <YearMonthForm /> */}
-                    <Text style={styles.title}>{month}</Text>
-                    <Text style={styles.total}>{this.props.costs} SEK</Text>
+                    {/* <TouchableOpacity onPress={this.showList}> */}
+                    {/* <TouchableOpacity onPress={() => props.navigate('CostsList')}> */}
+                        <Text style={styles.title}>{this.state.month}</Text>
+                        <Text style={styles.total}>{this.props.costs} SEK</Text>
+                    {/* </TouchableOpacity> */}
                 </View>
                 <View style={styles.data}>
                     <Text style={styles.title}>All expenses</Text>
@@ -44,7 +54,7 @@ const styles = StyleSheet.create({
         padding:10,
     },
     data: {
-        flex:2,
+        flex:1,
         backgroundColor:'green',
         width:wp('50%'),
         margin:2,
