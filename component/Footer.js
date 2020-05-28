@@ -4,6 +4,9 @@ import { Button } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import MyPopup from './lib/MyPopup';
+import moment from 'moment';
+import DatePicker from 'react-native-datepicker';
+
 
 export default class Footer extends Component {
     constructor(props){
@@ -11,7 +14,10 @@ export default class Footer extends Component {
         this.state = {
             sum:'',
             modalOpen: false,
+            date: moment().format("DD MMMM YYYY")
         }
+
+        this.submitForm = this.submitForm.bind(this);
     }
 
     changeHandler = (val) => {
@@ -30,21 +36,14 @@ export default class Footer extends Component {
         this.setState({ sum: newVal });
     };
 
-    // plusHandler() {
-    // // alert('You want to add new expenses')
-    //     let cost = '1000';
-    //     AsyncStorage.setItem('cost', cost);
-    // }
+    handleChange(value) {
+        this.setState({date: value})
+    }
 
-    // dislayCost = async () => {
-    //     try{
-    //         let cost = await AsyncStorage.getItem('cost');
-    //         alert(cost);
-    //     }
-    //     catch(error){
-    //         alert(error);
-    //     }
-    // }
+    submitForm(){
+        this.props.submitHandler(this.state.sum, this.state.date);
+        this.setState({ modalOpen: false });
+    }
 
     render () {
         return (
@@ -59,7 +58,6 @@ export default class Footer extends Component {
                     />
                 </TouchableOpacity>
 
-                
                 <MyPopup visible={this.state.modalOpen}>
                     <View style={styles.modal}>
                         <TouchableOpacity onPress={() => this.setState({ modalOpen: false })}>
@@ -80,7 +78,34 @@ export default class Footer extends Component {
                             onChangeText={this.changeHandler} 
                             value={this.state.sum} 
                         />
-                        <Button style={styles.button} onPress={() => this.props.submitHandler(this.state.sum)} title='Add your sum' />
+
+                        <DatePicker
+                                style={{width: 200}}
+                                date={this.state.date}
+                                mode="date"
+                                placeholder="select date"
+                                format="DD MMMM YYYY"
+                                confirmBtnText="Confirm"
+                                cancelBtnText="Cancel"
+                                customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    left: 0,
+                                    top: 4,
+                                    marginLeft: 0
+                                },
+                                dateInput: {
+                                    marginLeft: 36
+                                }
+                                }}
+                                onDateChange={(date) => {this.setState({date: date})}}
+                            />
+                        {/* <TextInput 
+                            style={styles.inputHide} 
+                            value={this.state.monthYear} 
+                        /> */}
+
+                        <Button style={styles.button} onPress={this.submitForm} title='Add your sum' />
                     </View>
                 </MyPopup>
             </View> 
@@ -110,9 +135,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         height:40,
     },
+    inputHide:{
+        display:'none',
+    },
     modal: {
         width:wp('90%'),
-        height:hp('30%') ,
+        height:hp('50%') ,
         borderColor: '#ccc',
         borderWidth: 1,
         borderStyle: 'solid',
