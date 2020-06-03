@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Alert, FlatList, Keyboard, TouchableWithoutFeedback, ScrollView, TouchableOpacity, Button, AsyncStorage} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 // import {setJSExceptionHandler} from 'react-native-exception-handler';
-import Header from '../Header';
-import Footer from '../Footer';
-import Chart from '../Chart';
-import Costs from '../Costs';
-import DismissKeyboard from '../lib/DismissKeyboard';
-import ListCosts from '../ListCosts';
+import Top from './Top';
+import Bottom from './Bottom';
+import Chart from './Chart';
+import Costs from './Costs';
+import DismissKeyboard from '../../lib/DismissKeyboard';
+// import ListCosts from '../expenses/ListCosts';
 
 
 export default class Home extends Component {
@@ -16,10 +16,10 @@ export default class Home extends Component {
       this.state = {
           total:0,
           expenses:[
-              { key: '1', sum: '100',  date: '12 April 2020' },
-              { key: '2', sum: '200', date: '17 April 2020' },
-              { key: '3', sum: '300', date: '17 March 2020' },
-              { key: '4', sum: '400', date: '8 May 2020' },
+              { key: '1', sum: '100', category: 'car', date: '12 April 2020' },
+              { key: '2', sum: '200', category: 'food', date: '17 April 2020' },
+              { key: '3', sum: '300', category: 'furniture', date: '17 March 2020' },
+              { key: '4', sum: '400', category: 'food', date: '8 May 2020' },
           ],
       }
       this.showList = this.showList.bind(this);
@@ -29,8 +29,8 @@ export default class Home extends Component {
   }
 
     showList = () => {
-        this.props.navigation.navigate('CostsList', {
-            allExpenses: this.state.expenses });
+      this.props.navigation.navigate('ExpensesDetail', {
+          allExpenses: this.state.expenses });
     }
 
     removeItem(key) {
@@ -57,21 +57,44 @@ export default class Home extends Component {
         const obj = {'key':key, 'sum':sum, 'date':date};
 
         if(sum.length > 1){
-            this.setState(prevState => ({ 
-                expenses: [obj, ...prevState.expenses]}), this.countTotal)
+          this.setState(prevState => ({ 
+              expenses: [obj, ...prevState.expenses]}), this.countTotal)
+              // AsyncStorage.setItem('cost', JSON.stringify(this.state.expenses))
         } else {
             Alert.alert('OOPS', 'Number must be over 2 characters long', [
                 {sum: 'Understood', onPress: () => console.log('alert closed') }
             ]);
         }
+
+        AsyncStorage.setItem('cost', JSON.stringify(this.state.expenses))
+        AsyncStorage.getAllKeys((err, keys) => {
+          AsyncStorage.multiGet(keys, (error, stores) => {
+            stores.map((result, i, store) => {
+              console.log({ [store[i][0]]: store[i][1] });
+              return true;
+            });
+          });
+        });
+        // if(sum.length > 1){
+        //     this.setState(prevState => ({ 
+        //         expenses: [obj, ...prevState.expenses]}), this.countTotal)
+        //         AsyncStorage.setItem('cost', JSON.stringify(this.state.expenses))
+        // } else {
+        //     Alert.alert('OOPS', 'Number must be over 2 characters long', [
+        //         {sum: 'Understood', onPress: () => console.log('alert closed') }
+        //     ]);
+        // }
     };  
 
     render(){
+
+      // hide yellow warning
+      console.disableYellowBox = true;
         return (
             <DismissKeyboard>
               <View style={styles.container}>
-                <View style={styles.header}>
-                  <Header />
+                <View style={styles.top}>
+                  <Top />
                 </View>
                 
                 <View style={styles.content}>
@@ -93,8 +116,8 @@ export default class Home extends Component {
                   <Chart />
                 </View>
         
-                <View style={styles.footer}>
-                  <Footer submitHandler={this.submitHandler} />
+                <View style={styles.bottom}>
+                  <Bottom submitHandler={this.submitHandler} />
                 </View>
               </View>
               </DismissKeyboard>
@@ -110,7 +133,7 @@ export default class Home extends Component {
         alignItems: 'center',
         justifyContent: 'center',
       },
-      header: {
+      top: {
         flex: 1,
         width:wp('100%'),
       },
@@ -121,7 +144,7 @@ export default class Home extends Component {
       chart: {
         flex: 3,
       },
-      footer: {
+      bottom: {
         flex: 1,
         width:wp('100%'),
       },
@@ -159,7 +182,6 @@ export default class Home extends Component {
 //     });
 //   });
 // });
-
 
 // remove cost from AsyncStorage
   // let keys = ['cost'];
