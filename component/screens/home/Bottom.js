@@ -3,12 +3,12 @@ import { StyleSheet, TextInput, View, TouchableOpacity, Modal, AsyncStorag } fro
 import { Button } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import MyPopup from './lib/MyPopup';
+import MyPopup from '../../lib/MyPopup';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
 
 
-export default class Footer extends Component {
+export default class Bottom extends Component {
     constructor(props){
         super(props)
         this.state = {
