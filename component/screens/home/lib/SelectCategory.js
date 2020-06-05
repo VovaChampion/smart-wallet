@@ -21,7 +21,8 @@ export default class SelectCategory extends Component {
             <View>
                 <Picker
                     selectedValue={this.state.selectedCategory}
-                    style={{ height: 200, width: 300, marginTop:-20 }}
+                    style={{ height: 100, width: 300, marginTop:-20 }}
+                    itemStyle={{height: 120}}
                     // onValueChange={(itemValue, itemIndex) => {this.setState({selectedCategory: itemValue})}}
                     onValueChange={this.handleCategoryChange}
                 >

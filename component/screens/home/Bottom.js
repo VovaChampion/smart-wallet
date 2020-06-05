@@ -57,7 +57,14 @@ export default class Bottom extends Component {
         return (
             <View style={styles.footer}>
 
-                <TouchableOpacity onPress={() => this.setState({ modalOpen: true })}>
+                {/* Open modal-form "add a new expense" + clear form */}
+                <TouchableOpacity onPress={() => 
+                    this.setState({ 
+                        modalOpen: true, 
+                        sum:'',
+                        date: moment().format("DD MMMM YYYY"),
+                        category:'house',
+                    })}>
                     <AntDesign 
                         style={styles.icon} 
                         name="pluscircleo" 
@@ -170,13 +177,11 @@ const styles = StyleSheet.create({
         paddingBottom:20,
     },
     category: {
-        flex:1,
-        alignItems: "center",
-        borderColor: 'black',
-        width: '100%',
+        margin:10,
+        // alignItems: "center",
     },
     selectDate: {
-        marginVertical:10,
+        marginVertical:15,
     }
 });
 
