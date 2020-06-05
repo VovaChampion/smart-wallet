@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     padding:10,
     alignItems: 'center',
     flexDirection: 'column',
-
+    backgroundColor: '#fff',
   },
   title: {
     fontWeight: 'bold',

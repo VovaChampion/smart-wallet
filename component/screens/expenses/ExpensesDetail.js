@@ -49,15 +49,10 @@ export default function ExpensesDetail(props) {
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#fff',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
   list: {
     flex: 1,
     width:wp('100%'),
-    // backgroundColor:'red',
+    backgroundColor: '#fff',
     display:'flex',
     flexDirection:'row',
     // justifyContent:'flex-start', 

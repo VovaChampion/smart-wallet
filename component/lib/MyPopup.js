@@ -12,11 +12,11 @@ export default class MyPopup extends Component {
                 transparent={true}
                 visible={this.props.visible}
                 >
-                    <DismissKeyboard>
-                        <View style={styles.modal}>
-                            {this.props.children}
-                        </View>
-                    </DismissKeyboard>
+                <DismissKeyboard>
+                    <View style={styles.modal}>
+                        {this.props.children}
+                    </View>
+                </DismissKeyboard>
             </Modal>
 
         )
