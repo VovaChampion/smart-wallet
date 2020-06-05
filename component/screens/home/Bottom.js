@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity, Modal, AsyncStorag } from 'react-native';
+import { StyleSheet, TextInput, View, TouchableOpacity, Picker, AsyncStorag } from 'react-native';
 import { Button } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import MyPopup from '../../lib/MyPopup';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
+import SelectCategory from './lib/SelectCategory';
 
 
 export default class Bottom extends Component {
@@ -14,7 +15,8 @@ export default class Bottom extends Component {
         this.state = {
             sum:'',
             modalOpen: false,
-            date: moment().format("DD MMMM YYYY")
+            date: moment().format("DD MMMM YYYY"),
+            category:'house'
         }
 
         this.submitForm = this.submitForm.bind(this);
@@ -41,11 +43,17 @@ export default class Bottom extends Component {
     }
 
     submitForm(){
-        this.props.submitHandler(this.state.sum, this.state.date);
+        this.props.submitHandler(this.state.sum, this.state.date, this.state.category);
         this.setState({ modalOpen: false });
     }
 
+    handleCategory = (itemValue) => {
+        console.log(itemValue);
+        this.setState({category: itemValue});
+    }
+
     render () {
+        
         return (
             <View style={styles.footer}>
 
@@ -69,6 +77,7 @@ export default class Bottom extends Component {
                                 color="black" 
                             />
                         </TouchableOpacity>
+
                         <TextInput 
                             style={styles.input} 
                             keyboardType ="numeric"
@@ -79,8 +88,17 @@ export default class Bottom extends Component {
                             value={this.state.sum} 
                         />
 
-                        <DatePicker
-                                style={{width: 200}}
+                        <View style={styles.category}>
+                            <SelectCategory 
+                                handleCategory={this.handleCategory} 
+                                // category={this.props.navigation.state.params}
+                                // onChange={e => { this.handleCategory(e) }}
+                            />
+                            
+                        </View>
+                        <View style={styles.selectDate}>
+                            <DatePicker
+                                style={{width: '100%'}}
                                 date={this.state.date}
                                 mode="date"
                                 placeholder="select date"
@@ -95,15 +113,13 @@ export default class Bottom extends Component {
                                     marginLeft: 0
                                 },
                                 dateInput: {
-                                    marginLeft: 36
+                                    marginLeft: 36,
+                                    borderRadius: 5,
                                 }
                                 }}
                                 onDateChange={(date) => {this.setState({date: date})}}
                             />
-                        {/* <TextInput 
-                            style={styles.inputHide} 
-                            value={this.state.monthYear} 
-                        /> */}
+                        </View>
 
                         <Button style={styles.button} onPress={this.submitForm} title='Add your sum' />
                     </View>
@@ -140,7 +156,7 @@ const styles = StyleSheet.create({
     },
     modal: {
         width:wp('90%'),
-        height:hp('50%') ,
+        height:hp('60%') ,
         borderColor: '#ccc',
         borderWidth: 1,
         borderStyle: 'solid',
@@ -153,13 +169,14 @@ const styles = StyleSheet.create({
         textAlign:'right',
         paddingBottom:20,
     },
-    button: {
-        // color:'green',
-        // shadowColor: 'rgba(0, 0, 0, 1)',
-        // shadowOpacity: 0.8,
-        // elevation: 6,
-        // shadowRadius: 15 ,
-        // shadowOffset : { width: 1, height: 13},
+    category: {
+        flex:1,
+        alignItems: "center",
+        borderColor: 'black',
+        width: '100%',
+    },
+    selectDate: {
+        marginVertical:10,
     }
 });
 

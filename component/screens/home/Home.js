@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Alert, FlatList, Keyboard, TouchableWithoutFeedback, ScrollView, TouchableOpacity, Button, AsyncStorage} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-// import {setJSExceptionHandler} from 'react-native-exception-handler';
 import Top from './Top';
 import Bottom from './Bottom';
 import Chart from './Chart';
@@ -48,13 +47,13 @@ export default class Home extends Component {
         this.setState({total: totalSum})
     }
 
-    submitHandler (sum, date) {
+    submitHandler (sum, date, category) {
 
         // console.log(sum);
         // console.log(date);
 
         const key = Math.random().toString();
-        const obj = {'key':key, 'sum':sum, 'date':date};
+        const obj = {'key':key, 'sum':sum, 'date':date, 'category':category};
 
         if(sum.length > 1){
           this.setState(prevState => ({ 
