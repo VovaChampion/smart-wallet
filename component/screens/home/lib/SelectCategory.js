@@ -8,21 +8,21 @@ export default class SelectCategory extends Component {
         this.state = {
             selectedCategory:'house'
         }
-        // this. handleCategoryChange = this. handleCategoryChange.bind(this);
-
     }
+
     handleCategoryChange = (itemValue, itemIndex) => {
         this.props.handleCategory(itemValue);
         this.setState({selectedCategory: itemValue})
     }
+
     render() {
 
         return (
             <View>
                 <Picker
                     selectedValue={this.state.selectedCategory}
-                    style={{ height: 200, width: 300, marginTop:-20 }}
-                    // onValueChange={(itemValue, itemIndex) => {this.setState({selectedCategory: itemValue})}}
+                    style={{ height: 100, width: 300, marginTop:-20 }}
+                    itemStyle={{height: 120}}
                     onValueChange={this.handleCategoryChange}
                 >
                     <Picker.Item label="Mortgage" value="mortgage" />

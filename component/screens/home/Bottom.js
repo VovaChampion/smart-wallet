@@ -7,6 +7,7 @@ import MyPopup from '../../lib/MyPopup';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
 import SelectCategory from './lib/SelectCategory';
+import SelectDate from './lib/SelectDate';
 
 
 export default class Bottom extends Component {
@@ -38,9 +39,9 @@ export default class Bottom extends Component {
         this.setState({ sum: newVal });
     };
 
-    handleChange(value) {
-        this.setState({date: value})
-    }
+    // handleChange(value) {
+    //     this.setState({date: value})
+    // }
 
     submitForm(){
         this.props.submitHandler(this.state.sum, this.state.date, this.state.category);
@@ -48,16 +49,25 @@ export default class Bottom extends Component {
     }
 
     handleCategory = (itemValue) => {
-        console.log(itemValue);
         this.setState({category: itemValue});
     }
 
-    render () {
-        
-        return (
-            <View style={styles.footer}>
+    handleDate = (itemValue) => {
+        this.setState({date: itemValue});
+    }
 
-                <TouchableOpacity onPress={() => this.setState({ modalOpen: true })}>
+    render () {
+        return (
+            
+            <View style={styles.footer}>
+                {/* Open modal-form "add a new expense" + clear form */}
+                <TouchableOpacity onPress={() => 
+                    this.setState({ 
+                        modalOpen: true, 
+                        sum:'',
+                        date: moment().format("DD MMMM YYYY"),
+                        category:'house',
+                    })}>
                     <AntDesign 
                         style={styles.icon} 
                         name="pluscircleo" 
@@ -81,7 +91,6 @@ export default class Bottom extends Component {
                         <TextInput 
                             style={styles.input} 
                             keyboardType ="numeric"
-                            
                             autoCorrect={false}
                             placeholder='add expenses'
                             onChangeText={this.changeHandler} 
@@ -91,33 +100,12 @@ export default class Bottom extends Component {
                         <View style={styles.category}>
                             <SelectCategory 
                                 handleCategory={this.handleCategory} 
-                                // category={this.props.navigation.state.params}
-                                // onChange={e => { this.handleCategory(e) }}
                             />
                             
                         </View>
                         <View style={styles.selectDate}>
-                            <DatePicker
-                                style={{width: '100%'}}
-                                date={this.state.date}
-                                mode="date"
-                                placeholder="select date"
-                                format="DD MMMM YYYY"
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    left: 0,
-                                    top: 4,
-                                    marginLeft: 0
-                                },
-                                dateInput: {
-                                    marginLeft: 36,
-                                    borderRadius: 5,
-                                }
-                                }}
-                                onDateChange={(date) => {this.setState({date: date})}}
+                            <SelectDate 
+                                handleDate={this.handleDate}
                             />
                         </View>
 
@@ -170,13 +158,11 @@ const styles = StyleSheet.create({
         paddingBottom:20,
     },
     category: {
-        flex:1,
-        alignItems: "center",
-        borderColor: 'black',
-        width: '100%',
+        margin:10,
+        // alignItems: "center",
     },
     selectDate: {
-        marginVertical:10,
+        marginVertical:15,
     }
 });
 

@@ -2,37 +2,49 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import moment from 'moment';
-// import YearMonthForm from './Month';
+import { connect } from 'react-redux';
+import SelectMonth from './lib/SelectMonth';
 
-export default class Costs extends Component {
+class Costs extends Component {
     constructor(props){
         super(props)
         this.state = {
             month: moment().format("MMMM YYYY")
         }
-
-        // this.showList = this.showList.bind(this);
     }
 
-    // showList = () => {
-    //     this.props.navigation.navigate('CostsList');
-    // }
+    handleMonth= (itemValue) => {
+        this.setState({month: itemValue});
+    }
    
-
     render () {
-        // console.log(this.props);
         
+        let totalSum = this.props.expenses.reduce((prev,next) => prev + Number(next.sum),0);  
+
+        const filterItems = (arr, query) => {
+          return arr.filter(el => el.date.toLowerCase().indexOf(query.toLowerCase()) !== -1)
+        }
+        
+        let totalMonth = filterItems(this.props.expenses, this.state.month).reduce((prev,next) => prev + Number(next.sum),0);
+        
+
         return (
             <View style={styles.costs}>
                 <View style={styles.data}>
                     {/* <TouchableOpacity onPress={this.showList}> */}
                     {/* <TouchableOpacity onPress={() => props.navigate('CostsList')}> */}
-                        <Text style={styles.title}>{this.state.month}</Text>
-                        <Text style={styles.total}>{this.props.costs} SEK</Text>
+                        <SelectMonth 
+                            handleMonth={this.handleMonth}
+                        />
+                        {/* <Text style={styles.title}>{this.state.month}</Text> */}
+                        {/* <Text style={styles.total}>{this.props.costs} SEK</Text> */}
+                        {/* <Text style={styles.total}>{this.props.total} SEK</Text> */}
+                        <Text style={styles.total}>{totalMonth} SEK</Text>
                     {/* </TouchableOpacity> */}
                 </View>
                 <View style={styles.data}>
                     <Text style={styles.title}>All expenses</Text>
+                    <Text style={styles.total}>{totalSum} SEK</Text>
                 </View>
                 {/* <View style={styles.icons}>
                     <TouchableOpacity onPress={this.editHandler}>
@@ -47,11 +59,21 @@ export default class Costs extends Component {
     }
 }
 
+
+const mapStateToProps = (state) => {
+    return {
+      total: state.total,
+      expenses: state.expenses
+    }
+  }
+  
+export default connect(mapStateToProps)(Costs)
+
 const styles = StyleSheet.create({
     costs: {
         flex:1,
         flexDirection:'row',
-        padding:10,
+        // padding:10,
     },
     data: {
         flex:1,
@@ -59,18 +81,19 @@ const styles = StyleSheet.create({
         width:wp('50%'),
         margin:2,
         borderRadius:10,
-        height: hp('10%'),
+        height: hp('15%'),
+        justifyContent:'space-between',
     },
     title:  {
         textAlign: 'center',
         color: '#fff',
         fontSize: 20,
         fontWeight: 'bold',
+        // backgroundColor:'yellow',
+        padding:7
     },
     total:{
         padding:10,
-        // paddingTop:10,
-        // paddingBottom:10,
         color:'red',
         fontSize: 20,
         fontWeight: 'bold',
