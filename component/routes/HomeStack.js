@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Home from '../screens/home/Home';
 import ExpensesDetail from '../screens/expenses/ExpensesDetail';
 import Header from '../shared/Header';
+import CostDetails from '../screens/expenses/CostDetails';
 
 const screens = {
   Home: {
@@ -14,8 +15,8 @@ const screens = {
         }
     },
   },
-  ExpensesDetail: {
-    screen: ExpensesDetail,
+  CostDetails: {
+    screen: CostDetails,
     navigationOptions: ({ navigation }) => ({
         title: 'List of expenses',
     }),
