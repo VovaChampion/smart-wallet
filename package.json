@@ -19,9 +19,11 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
     "react-native-chart-kit": "^5.5.0",
     "react-native-datepicker": "^1.7.2",
+    "react-native-dropdown": "0.0.6",
     "react-native-elements": "^2.0.0",
     "react-native-exception-handler": "^2.10.8",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-material-dropdown": "^0.11.1",
     "react-native-reanimated": "^1.7.1",
     "react-native-responsive-screen": "^1.4.1",
     "react-native-safe-area-context": "^0.7.3",
@@ -29,7 +31,10 @@
     "react-native-svg": "11.0.1",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.3.9",
-    "react-navigation-stack": "^2.5.1"
+    "react-navigation-drawer": "^2.4.13",
+    "react-navigation-stack": "^2.5.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

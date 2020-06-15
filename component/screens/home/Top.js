@@ -4,7 +4,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { Feather, Entypo } from '@expo/vector-icons';
 
 
-export default class Header extends Component {
+export default class Top extends Component {
     constructor(){
         super()
         this.state = {
@@ -39,9 +39,6 @@ export default class Header extends Component {
                         <Entypo name="plus" size={30} color="white" />
                     </TouchableOpacity>
                 </View>
-                    
-
-                
             </View>
         );
     }
@@ -51,13 +48,12 @@ const styles = StyleSheet.create({
     headerTop: {
         backgroundColor:'#85C1E9',
         paddingTop:20,
-        height:80,
+        height:70,
         flexDirection:'row', 
         flexWrap:'wrap',
         justifyContent: 'center',
     },
     title:  {
-        textAlign: 'center',
         color: '#fff',
         fontSize: 20,
         fontWeight: 'bold',

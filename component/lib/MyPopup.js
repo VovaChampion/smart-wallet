@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Modal, View, StyleSheet } from 'react-native';
 import DismissKeyboard from './DismissKeyboard';
 
@@ -12,11 +12,11 @@ export default class MyPopup extends Component {
                 transparent={true}
                 visible={this.props.visible}
                 >
-                    <DismissKeyboard>
-                        <View style={styles.modal}>
-                            {this.props.children}
-                        </View>
-                    </DismissKeyboard>
+                <DismissKeyboard>
+                    <View style={styles.modal}>
+                        {this.props.children}
+                    </View>
+                </DismissKeyboard>
             </Modal>
 
         )

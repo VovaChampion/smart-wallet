@@ -1,49 +1,36 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
-import Home from '../screens/Home';
-import CostsList from '../screens/CostsList';
 
-
-// style for logo in the header
-const styles = StyleSheet.create({
-    logo: {
-        marginTop:15,
-        marginLeft: "70%",
-    }
-});
+import Home from '../screens/home/Home';
+import ExpensesDetail from '../screens/expenses/ExpensesDetail';
+import Header from '../shared/Header';
+import CostDetails from '../screens/expenses/CostDetails';
 
 const screens = {
   Home: {
     screen: Home,
-    navigationOptions: ({ navigation }) => ({
-        title: 'Smart Wallet',
-        headerBackground: () =>
-            <Image
-                style={styles.logo}
-                source={require('../../assets/images/wallet_icon.png')}
-            />
-    }),
+    navigationOptions: ({ navigation }) => {
+        return {
+            headerTitle: () => <Header title='Smart Wallet' navigation={navigation} />
+        }
+    },
   },
-  CostsList: {
-    screen: CostsList,
+  CostDetails: {
+    screen: CostDetails,
     navigationOptions: ({ navigation }) => ({
         title: 'List of expenses',
-        headerBackground: () =>
-            <Image
-                style={styles.logo}
-                source={require('../../assets/images/wallet_icon.png')}
-            />
     }),
   },
 };
 
-
-  
 // home stack navigator screens
-const HomeStack = createStackNavigator(screens);
+const HomeStack = createStackNavigator(screens, {
+    defaultNavigationOptions: {
+        headerTintColor: '#444',
+        headerStyle: { backgroundColor: '#eee', height: 80 }
+    }
+});
 
-export default createAppContainer(HomeStack);
+export default HomeStack;
 
 

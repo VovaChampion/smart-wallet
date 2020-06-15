@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity, Modal, AsyncStorag } from 'react-native';
+import { StyleSheet, TextInput, View, TouchableOpacity, Picker, AsyncStorag } from 'react-native';
 import { Button } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import MyPopup from './lib/MyPopup';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import MyPopup from '../../lib/MyPopup';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
+import SelectCategory from './lib/SelectCategory';
+import SelectDate from './lib/SelectDate';
 
 
-export default class Footer extends Component {
+export default class Bottom extends Component {
     constructor(props){
         super(props)
         this.state = {
             sum:'',
             modalOpen: false,
-            date: moment().format("DD MMMM YYYY")
+            date: moment().format("DD MMMM YYYY"),
+            category:'house'
         }
 
         this.submitForm = this.submitForm.bind(this);
@@ -36,20 +39,35 @@ export default class Footer extends Component {
         this.setState({ sum: newVal });
     };
 
-    handleChange(value) {
-        this.setState({date: value})
-    }
+    // handleChange(value) {
+    //     this.setState({date: value})
+    // }
 
     submitForm(){
-        this.props.submitHandler(this.state.sum, this.state.date);
+        this.props.submitHandler(this.state.sum, this.state.date, this.state.category);
         this.setState({ modalOpen: false });
+    }
+
+    handleCategory = (itemValue) => {
+        this.setState({category: itemValue});
+    }
+
+    handleDate = (itemValue) => {
+        this.setState({date: itemValue});
     }
 
     render () {
         return (
+            
             <View style={styles.footer}>
-
-                <TouchableOpacity onPress={() => this.setState({ modalOpen: true })}>
+                {/* Open modal-form "add a new expense" + clear form */}
+                <TouchableOpacity onPress={() => 
+                    this.setState({ 
+                        modalOpen: true, 
+                        sum:'',
+                        date: moment().format("DD MMMM YYYY"),
+                        category:'house',
+                    })}>
                     <AntDesign 
                         style={styles.icon} 
                         name="pluscircleo" 
@@ -69,41 +87,27 @@ export default class Footer extends Component {
                                 color="black" 
                             />
                         </TouchableOpacity>
+
                         <TextInput 
                             style={styles.input} 
                             keyboardType ="numeric"
-                            
                             autoCorrect={false}
                             placeholder='add expenses'
                             onChangeText={this.changeHandler} 
                             value={this.state.sum} 
                         />
 
-                        <DatePicker
-                                style={{width: 200}}
-                                date={this.state.date}
-                                mode="date"
-                                placeholder="select date"
-                                format="DD MMMM YYYY"
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    left: 0,
-                                    top: 4,
-                                    marginLeft: 0
-                                },
-                                dateInput: {
-                                    marginLeft: 36
-                                }
-                                }}
-                                onDateChange={(date) => {this.setState({date: date})}}
+                        <View style={styles.category}>
+                            <SelectCategory 
+                                handleCategory={this.handleCategory} 
                             />
-                        {/* <TextInput 
-                            style={styles.inputHide} 
-                            value={this.state.monthYear} 
-                        /> */}
+                            
+                        </View>
+                        <View style={styles.selectDate}>
+                            <SelectDate 
+                                handleDate={this.handleDate}
+                            />
+                        </View>
 
                         <Button style={styles.button} onPress={this.submitForm} title='Add your sum' />
                     </View>
@@ -140,7 +144,7 @@ const styles = StyleSheet.create({
     },
     modal: {
         width:wp('90%'),
-        height:hp('50%') ,
+        height:hp('60%') ,
         borderColor: '#ccc',
         borderWidth: 1,
         borderStyle: 'solid',
@@ -153,13 +157,12 @@ const styles = StyleSheet.create({
         textAlign:'right',
         paddingBottom:20,
     },
-    button: {
-        // color:'green',
-        // shadowColor: 'rgba(0, 0, 0, 1)',
-        // shadowOpacity: 0.8,
-        // elevation: 6,
-        // shadowRadius: 15 ,
-        // shadowOffset : { width: 1, height: 13},
+    category: {
+        margin:10,
+        // alignItems: "center",
+    },
+    selectDate: {
+        marginVertical:15,
     }
 });
 
