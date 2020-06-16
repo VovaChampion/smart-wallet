@@ -14,8 +14,8 @@ export default function Header({ title, navigation }) {
       <MaterialIcons name='menu' size={30} onPress={openMenu} style={styles.icon} />
       <View style={styles.headerTitle}>
         <Image
-            style={styles.logo}
-            source={require('../../assets/images/wallet_icon.png')}
+          style={styles.logo}
+          source={require('../../assets/images/wallet_icon.png')}
         />
         <Text style={styles.headerText}>{title}</Text>
       </View>

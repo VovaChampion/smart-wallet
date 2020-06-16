@@ -13,19 +13,13 @@ import { addCost } from '../../../src/actions/costAction';
 
 class Home extends Component {
   constructor(){
-      super();
-      this.state = {
-          total:0,
-          // expenses:[
-          //     { key: '1', sum: '100', category: 'car', date: '12 April 2020' },
-          //     { key: '2', sum: '200', category: 'food', date: '17 April 2020' },
-          //     { key: '3', sum: '300', category: 'furniture', date: '17 March 2020' },
-          //     { key: '4', sum: '400', category: 'food', date: '8 May 2020' },
-          // ],
-      }
-      this.showList = this.showList.bind(this);
-      this.submitHandler = this.submitHandler.bind(this);
-      this.countTotal = this.countTotal.bind(this);
+    super();
+    this.state = {
+      total:0,
+    }
+    this.showList = this.showList.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
+    this.countTotal = this.countTotal.bind(this);
   }
 
     // showList = () => {
@@ -33,9 +27,9 @@ class Home extends Component {
     //       allExpenses: this.props.expenses });
     // }
 
-    showList = () => {
-      this.props.navigation.navigate('CostDetails');
-    }
+  showList = () => {
+    this.props.navigation.navigate('CostDetails');
+  }
 
     // removeItem(key) {
     //     // console.log(key)
@@ -44,141 +38,138 @@ class Home extends Component {
     //     this.setState({expenses: newExpenses},this.countTotal);
     // }
 
-    componentDidMount(){
-        this.countTotal();
-    }
+  componentDidMount(){
+      this.countTotal();
+  }
 
-    countTotal(){
-        // const totalSum = this.state.expenses.reduce((prev,next) => prev + Number(next.sum),0);
-        const totalSum = this.props.expenses.reduce((prev,next) => prev + Number(next.sum),0);
-        this.setState({total: totalSum})
-    }
+  countTotal(){
+    // const totalSum = this.state.expenses.reduce((prev,next) => prev + Number(next.sum),0);
+    const totalSum = this.props.expenses.reduce((prev,next) => prev + Number(next.sum),0);
+    this.setState({total: totalSum})
+  }
 
-    submitHandler (sum, date, category) {
+  submitHandler (sum, date, category) {
 
-        const key = Math.random().toString();
-        const cost = {'key':key, 'sum':sum, 'date':date, 'category':category};
+    const key = Math.random().toString();
+    const cost = {'key':key, 'sum':sum, 'date':date, 'category':category};
 
-        // this.props.addCost(cost);
-        // console.log(cost);
-        
-        if(sum.length > 1){
-          this.props.addCost(cost);
-              // AsyncStorage.setItem('cost', JSON.stringify(this.state.expenses))
-        } else {
-          Alert.alert('OOPS', 'Number must be over 2 characters long', [
-              {sum: 'Understood', onPress: () => console.log('alert closed') }
-          ]);
-        }
-
+    // this.props.addCost(cost);
+    // console.log(cost);
+    
+    if(sum.length > 1){
+      this.props.addCost(cost);
         // AsyncStorage.setItem('cost', JSON.stringify(this.state.expenses))
-        // AsyncStorage.getAllKeys((err, keys) => {
-        //   AsyncStorage.multiGet(keys, (error, stores) => {
-        //     stores.map((result, i, store) => {
-        //       // console.log({ [store[i][0]]: store[i][1] });
-        //       return true;
-        //     });
-        //   });
-        // });
-        // if(sum.length > 1){
-        //     this.setState(prevState => ({ 
-        //         expenses: [obj, ...prevState.expenses]}), this.countTotal)
-        //         AsyncStorage.setItem('cost', JSON.stringify(this.state.expenses))
-        // } else {
-        //     Alert.alert('OOPS', 'Number must be over 2 characters long', [
-        //         {sum: 'Understood', onPress: () => console.log('alert closed') }
-        //     ]);
-        // }
-    };  
+    } else {
+      Alert.alert('OOPS', 'Number must be over 2 characters long', [
+        {sum: 'Understood', onPress: () => console.log('alert closed') }
+      ]);
+    }
 
-    render(){
+      // AsyncStorage.setItem('cost', JSON.stringify(this.state.expenses))
+      // AsyncStorage.getAllKeys((err, keys) => {
+      //   AsyncStorage.multiGet(keys, (error, stores) => {
+      //     stores.map((result, i, store) => {
+      //       // console.log({ [store[i][0]]: store[i][1] });
+      //       return true;
+      //     });
+      //   });
+      // });
+      // if(sum.length > 1){
+      //     this.setState(prevState => ({ 
+      //         expenses: [obj, ...prevState.expenses]}), this.countTotal)
+      //         AsyncStorage.setItem('cost', JSON.stringify(this.state.expenses))
+      // } else {
+      //     Alert.alert('OOPS', 'Number must be over 2 characters long', [
+      //         {sum: 'Understood', onPress: () => console.log('alert closed') }
+      //     ]);
+      // }
+  };  
 
-      // console.log(this.props);
+  render(){
+
+    // hide yellow warning
+    console.disableYellowBox = true;
+    return (
+      <DismissKeyboard>
+        <View style={styles.container}>
+          <View style={styles.top}>
+            <Top />
+          </View>
+          
+          <View style={styles.content}>
+            <TouchableOpacity onPress={this.showList}>
+              <Costs costs={this.state.total}  />
+            </TouchableOpacity>
+          </View>
+          
+          {/* <View style={styles.list}>
+            <FlatList
+              data={this.state.expenses}
+              renderItem={({ item }) => (
+                <ListCosts item={item} removeItem={this.removeItem} />
+              )}
+            />
+          </View> */}
+
+          {/* <View style={styles.list}>
+            <FlatList
+              data={this.props.expenses}
+              renderItem={({ item }) => (
+                <View>
+                  <Text>{item.sum}</Text>
+                  <Text>{item.category}</Text>
+                  <Text>{item.date}</Text>
+                </View>
+              )}
+            />
+          </View> */}
+  
+          <View style={styles.chart}>
+            <Chart />
+          </View>
+  
+          <View style={styles.bottom}>
+            <Bottom submitHandler={this.submitHandler} />
+          </View>
+        </View>
+      </DismissKeyboard>
       
+    );
+  }
+}
 
-      // hide yellow warning
-      console.disableYellowBox = true;
-        return (
-            <DismissKeyboard>
-              <View style={styles.container}>
-                <View style={styles.top}>
-                  <Top />
-                </View>
-                
-                <View style={styles.content}>
-                  <TouchableOpacity onPress={this.showList}>
-                    <Costs costs={this.state.total}  />
-                  </TouchableOpacity>
-                </View>
-                
-                {/* <View style={styles.list}>
-                  <FlatList
-                    data={this.state.expenses}
-                    renderItem={({ item }) => (
-                      <ListCosts item={item} removeItem={this.removeItem} />
-                    )}
-                  />
-                </View> */}
-
-                {/* <View style={styles.list}>
-                  <FlatList
-                    data={this.props.expenses}
-                    renderItem={({ item }) => (
-                      <View>
-                        <Text>{item.sum}</Text>
-                        <Text>{item.category}</Text>
-                        <Text>{item.date}</Text>
-                      </View>
-                    )}
-                  />
-                </View> */}
-        
-                <View style={styles.chart}>
-                  <Chart />
-                </View>
-        
-                <View style={styles.bottom}>
-                  <Bottom submitHandler={this.submitHandler} />
-                </View>
-              </View>
-              </DismissKeyboard>
-         
-          );
-        }
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    top: {
+      flex: 1,
+      width:wp('100%'),
+    },
+    content: {
+      flex: 1.5,
+      width:wp('100%'),
+      backgroundColor:'blue'
+    },
+    chart: {
+      flex: 3,
+    },
+    bottom: {
+      flex: 1,
+      width:wp('100%'),
+    },
+    list: {
+      flex: 1,
+      width:wp('100%'),
+      backgroundColor:'red',
+      display:'flex',
+      flexDirection:'row',
+      overflow:'scroll'
     }
-
-    const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      top: {
-        flex: 1,
-        width:wp('100%'),
-      },
-      content: {
-        flex: 1.5,
-        width:wp('100%'),
-        backgroundColor:'blue'
-      },
-      chart: {
-        flex: 3,
-      },
-      bottom: {
-        flex: 1,
-        width:wp('100%'),
-      },
-      list: {
-        flex: 1,
-        width:wp('100%'),
-        backgroundColor:'red',
-        display:'flex',
-        flexDirection:'row',
-        overflow:'scroll'
-    }
-});
+  });
 
 const mapStateToProps = (state) => {
   return {
