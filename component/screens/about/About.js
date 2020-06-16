@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text,  Linking, Button, Image } from 'react-native';
-import { heightPercentageToDP } from 'react-native-responsive-screen';
-// import { globalStyles } from '../styles/global';
+// import { heightPercentageToDP } from 'react-native-responsive-screen';
 
 export default function About() {
   return (
@@ -51,5 +50,5 @@ const styles = StyleSheet.create({
   logo: {
     width: '100%',
     height: 200,
-}
+  }
 });

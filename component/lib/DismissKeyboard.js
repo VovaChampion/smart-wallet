@@ -4,9 +4,9 @@ import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 //Hide keyboard
 
 const DismissKeyboard = ({ children }) => (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      {children}
-    </TouchableWithoutFeedback>
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
 );
 
 export default DismissKeyboard;
