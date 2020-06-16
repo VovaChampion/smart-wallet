@@ -7,14 +7,14 @@ import AboutStack from './AboutStack';
 
 // drawer navigation options
 const RootDrawerNavigator = createDrawerNavigator({
-    Home: {
-        screen: HomeStack,
-    },
-    About: {
-        screen: AboutStack,
-    }
+	Home: {
+		screen: HomeStack,
+	},
+	About: {
+		screen: AboutStack,
+	}
 },
-    {drawerPosition: 'right'},
+	{drawerPosition: 'right'},
 );
 
 export default createAppContainer(RootDrawerNavigator);

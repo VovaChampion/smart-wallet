@@ -21,12 +21,12 @@ class CostItem extends Component {
     return (
       <TouchableOpacity>
         <View style={styles.item}>
-            <Text style={styles.itemSum}>{item.sum}</Text>
-            <Text style={styles.itemDate}>{item.category}</Text>
-            <Text style={styles.itemDate}>{item.date}</Text>
-            <TouchableOpacity onPress={() => this.removeItem(item.key)}> 
-                <AntDesign style={styles.delete} name="delete" size={15} color="black" />
-            </TouchableOpacity>
+          <Text style={styles.itemSum}>{item.sum}</Text>
+          <Text style={styles.itemDate}>{item.category}</Text>
+          <Text style={styles.itemDate}>{item.date}</Text>
+          <TouchableOpacity onPress={() => this.removeItem(item.key)}> 
+            <AntDesign style={styles.delete} name="delete" size={15} color="black" />
+          </TouchableOpacity>
         </View>
       </TouchableOpacity>
     )
@@ -62,12 +62,16 @@ const styles = StyleSheet.create({
   },
   itemSum: {
     marginRight:20,
+    // width:30,
   },
   delete: {
     textAlign:'right',
     backgroundColor:'white', 
   },
   itemDate: {
-    marginRight: 20
+    marginRight: 5,
+    // backgroundColor:'red',
+    // width:120,
+    // textAlign:'left'
   }
 });
