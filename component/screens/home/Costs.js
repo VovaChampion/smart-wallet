@@ -38,12 +38,12 @@ class Costs extends Component {
             {/* <Text style={styles.title}>{this.state.month}</Text> */}
             {/* <Text style={styles.total}>{this.props.costs} SEK</Text> */}
             {/* <Text style={styles.total}>{this.props.total} SEK</Text> */}
-            <Text style={styles.total}>{totalMonth} SEK</Text>
+            <Text style={styles.total}>{totalMonth}</Text>
           {/* </TouchableOpacity> */}
         </View>
         <View style={styles.data}>
           <Text style={styles.title}>All expenses</Text>
-          <Text style={styles.total}>{totalSum} SEK</Text>
+          <Text style={styles.total}>{totalSum}</Text>
         </View>
         {/* <View style={styles.icons}>
             <TouchableOpacity onPress={this.editHandler}>
