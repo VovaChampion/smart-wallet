@@ -10,7 +10,7 @@ class CostDetails extends Component {
     return(
       <View style={styles.list}>
         <FlatList
-          //sort by date
+          //sort by date, (change it in the future) BUT do not recommend creating new Date objects inside the sort method. Have hit production performance issues specifically for that reason. Do not allocate memory (and GC) inside a sort method.
           data={this.props.expenses.sort((a, b) => new Date(b.date) - new Date(a.date))}
           renderItem={({ item }) => (
           // <CostItem item={item} removeItem={this.removeItem} />
