@@ -8,53 +8,38 @@ import Costs from './Costs';
 import DismissKeyboard from '../../lib/DismissKeyboard';
 import { connect } from 'react-redux';
 import { addCost } from '../../../src/actions/costAction';
-// import ListCosts from '../expenses/ListCosts';
+import moment from 'moment';
 
 
 class Home extends Component {
   constructor(){
     super();
     this.state = {
-      total:0,
+      month: moment().format("MMMM YYYY")
     }
-    this.showList = this.showList.bind(this);
+
     this.submitHandler = this.submitHandler.bind(this);
-    this.countTotal = this.countTotal.bind(this);
+    this.getData = this.getData.bind(this);
   }
 
-    // showList = () => {
-    //   this.props.navigation.navigate('CostDetails', {
-    //       allExpenses: this.props.expenses });
-    // }
-
-  showList = () => {
-    this.props.navigation.navigate('CostDetails');
+  getData = (val) => {
+    this.setState({month: val}); 
+  }
+  showMonthList = () => {
+    this.props.navigation.navigate('CostDetailsMonth', {
+      month: this.state.month });
+    // this.getData()
   }
 
-    // removeItem(key) {
-    //     // console.log(key)
-    //     // let newExpenses = this.state.expenses.filter(item => item.key !== key)
-    //     let newExpenses = this.props.expenses.filter(item => item.key !== key)
-    //     this.setState({expenses: newExpenses},this.countTotal);
-    // }
-
-  componentDidMount(){
-      this.countTotal();
-  }
-
-  countTotal(){
-    // const totalSum = this.state.expenses.reduce((prev,next) => prev + Number(next.sum),0);
-    const totalSum = this.props.expenses.reduce((prev,next) => prev + Number(next.sum),0);
-    this.setState({total: totalSum})
+  showYearList = () => {
+    this.props.navigation.navigate('CostDetailsYear', {
+      month: this.state.month });
   }
 
   submitHandler (sum, date, category) {
 
     const key = Math.random().toString();
     const cost = {'key':key, 'sum':sum, 'date':date, 'category':category};
-
-    // this.props.addCost(cost);
-    // console.log(cost);
     
     if(sum.length > 1){
       this.props.addCost(cost);
@@ -86,7 +71,6 @@ class Home extends Component {
   };  
 
   render(){
-
     // hide yellow warning
     console.disableYellowBox = true;
     return (
@@ -97,9 +81,7 @@ class Home extends Component {
           </View>
           
           <View style={styles.content}>
-            <TouchableOpacity onPress={this.showList}>
-              <Costs costs={this.state.total}  />
-            </TouchableOpacity>
+            <Costs showMonthList={this.showMonthList} showYearList={this.showYearList} sendData={this.getData} />
           </View>
           
           {/* <View style={styles.list}>
@@ -152,7 +134,7 @@ class Home extends Component {
     content: {
       flex: 1.5,
       width:wp('100%'),
-      backgroundColor:'blue'
+      // backgroundColor:'blue'
     },
     chart: {
       flex: 3,
