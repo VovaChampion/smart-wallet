@@ -3,7 +3,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Home from '../screens/home/Home';
 import Header from '../shared/Header';
-import CostDetails from '../screens/expenses/CostDetails';
+import CostDetailsMonth from '../screens/expenses/CostDetailsMonth';
+import CostDetailsYear from '../screens/expenses/CostDetailsYear';
 
 const screens = {
   Home: {
@@ -14,10 +15,16 @@ const screens = {
       }
     },
   },
-  CostDetails: {
-    screen: CostDetails,
+  CostDetailsMonth: {
+    screen: CostDetailsMonth,
     navigationOptions: ({ navigation }) => ({
-      title: 'List of expenses',
+      title: 'Expenses for the month',
+    }),
+  },
+  CostDetailsYear: {
+    screen: CostDetailsYear,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Expenses for the year',
     }),
   },
 };
