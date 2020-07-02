@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Picker, View, Text } from 'react-native';
+import { Picker, View } from 'react-native';
+import { connect } from 'react-redux';
 
  
-export default class SelectCategory extends Component {
+class SelectCategory extends Component {
   constructor(props){
     super(props)
     this.state = {
-      selectedCategory:'house'
+      selectedCategory:"food",
     }
   }
 
@@ -25,15 +26,27 @@ export default class SelectCategory extends Component {
           itemStyle={{height: 120}}
           onValueChange={this.handleCategoryChange}
         >
-          <Picker.Item label="Mortgage" value="mortgage" />
+          {this.props.categories.map((item, index) => {
+            return (<Picker.Item label={item.name} value={item.name} key={index}/>) 
+          })}
+          {/* <Picker.Item label="Mortgage" value="mortgage" />
           <Picker.Item label="Food" value="food" />
           <Picker.Item label="Car" value="car" />
           <Picker.Item label="House" value="house" />
           <Picker.Item label="Internet" value="internet" />
           <Picker.Item label="Clothes" value="clothes" />
           <Picker.Item label="Utilities" value="utilities" />
+          <Picker.Item label="Vacation" value="vacation" /> */}
         </Picker>
       </View>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categories,
+  }
+}
+  
+export default connect(mapStateToProps)(SelectCategory);
