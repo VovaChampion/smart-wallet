@@ -5,9 +5,25 @@ export const deleteCost = (key) => {
   }
 }
 
+export const deleteCat = (id) => {
+  return {
+    type: 'DELETE_CATEGORY',
+    id: id
+  }
+}
+
 export const addCost = (cost) => {
   return {
     type: 'ADD_COST',
     cost: cost
   }
 }
+
+export const addCat = (cat) => {
+  return {
+    type: 'ADD_CATEGORY',
+    cat: cat
+  }
+}
+
+
