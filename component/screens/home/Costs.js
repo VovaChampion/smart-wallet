@@ -66,7 +66,6 @@ class Costs extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    month: state.month,
     expenses: state.expenses,
   }
 }

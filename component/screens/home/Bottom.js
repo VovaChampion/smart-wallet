@@ -17,7 +17,7 @@ export default class Bottom extends Component {
       sum:'',
       modalOpen: false,
       date: moment().format("DD MMMM YYYY"),
-      category:'house'
+      category:'food'
     }
 
     this.submitForm = this.submitForm.bind(this);
@@ -65,7 +65,7 @@ export default class Bottom extends Component {
             modalOpen: true, 
             sum:'',
             date: moment().format("DD MMMM YYYY"),
-            category:'house',
+            category:'food',
           })}>
           <AntDesign 
             style={styles.icon} 
@@ -107,7 +107,7 @@ export default class Bottom extends Component {
               />
             </View>
 
-            <Button style={styles.button} onPress={this.submitForm} title='Add your sum' />
+            <Button onPress={this.submitForm} title='Add your sum' />
           </View>
         </MyPopup>
       </View> 
