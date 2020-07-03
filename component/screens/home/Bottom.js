@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity, Picker, AsyncStorag } from 'react-native';
+import { StyleSheet, TextInput, View, TouchableOpacity, AsyncStorag } from 'react-native';
 import { Button } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import MyPopup from '../../lib/MyPopup';
 import moment from 'moment';
-import DatePicker from 'react-native-datepicker';
 import SelectCategory from './lib/SelectCategory';
 import SelectDate from './lib/SelectDate';
 
@@ -38,10 +37,6 @@ export default class Bottom extends Component {
     }
     this.setState({ sum: newVal });
   };
-
-    // handleChange(value) {
-    //     this.setState({date: value})
-    // }
 
   submitForm(){
     this.props.submitHandler(this.state.sum, this.state.date, this.state.category);
@@ -120,7 +115,7 @@ const styles = StyleSheet.create({
     position:"absolute",
     bottom: 0,
     height:60,
-    backgroundColor: '#85C1E9',
+    backgroundColor:'#5DADE2',
     width:wp('100%')
   },
   icon: {
@@ -157,11 +152,9 @@ const styles = StyleSheet.create({
   },
   category: {
     margin:10,
-    // alignItems: "center",
   },
   selectDate: {
     marginVertical:15,
   }
 });
-
   

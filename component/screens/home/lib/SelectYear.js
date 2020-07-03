@@ -3,32 +3,31 @@ import { View } from 'react-native';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
 
-export default class SelectMonth extends Component {
+export default class SelectYear extends Component {
   constructor(props){
     super(props)
     this.state = {
-      selectedMonth: moment().format("MMMM YYYY")
+      selectedYear: moment().format("YYYY")
     }
-    this. handleMonthChange = this.handleMonthChange.bind(this);
+    this. handleYearChange = this.handleYearChange.bind(this);
 
   }
-  handleMonthChange = (itemValue, itemIndex) => {
-    this.props.handleMonth(itemValue);
-    this.setState({selectedMonth: itemValue})
+  handleYearChange = (itemValue, itemIndex) => {
+    this.props.handleYear(itemValue);
+    this.setState({selectedYear: itemValue})
   }
   render() {
     return (
       <View>
         <DatePicker
           style={{width: '100%'}}
-          date={this.state.selectedMonth}
+          date={this.state.selectedYear}
           mode="date"
-          format="MMMM YYYY"
+          format="YYYY"
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
           customStyles={{
             dateIcon: {
-              // display:'none',
               position: 'absolute',
               left: 0,
               top: 4,
@@ -45,7 +44,7 @@ export default class SelectMonth extends Component {
               fontWeight: 'bold',
             }
           }}
-          onDateChange={this.handleMonthChange}
+          onDateChange={this.handleYearChange}
         />
       </View>
     );

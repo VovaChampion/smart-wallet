@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, Text, TouchableOpacity,TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import CostItem from './CostItem';
 import CategoryItem from './CategoryItem';
@@ -12,7 +12,6 @@ class CostDetailsYear extends Component {
   constructor(props){
     super(props)
     this.state = {
-      // open: false,
       selectedCategory: 'car',
       modalOpen: false,
     }
@@ -21,16 +20,16 @@ class CostDetailsYear extends Component {
   showMore(item){
     const { open, modalOpen } = this.state;
     this.setState({ 
-      // open: !open,
       modalOpen: !modalOpen,
       selectedCategory: item.category })
   }
 
   render() {
-    //console.log(this.props);
+    const theYear = this.props.navigation.state.params.year;
 
     // get data from initState and create new Array only with Category and expenses for this category(totalSum)
     result = Object.values(this.props.expenses
+      .filter(item => item.date.includes(theYear))
       .reduce((r, {category, sum}) => {
       r[category] = {category, totalSum: (r[category]?.totalSum||0)+ +sum}
       return r                   
@@ -39,7 +38,7 @@ class CostDetailsYear extends Component {
     
     return(
       <View style={styles.container}>
-        <ChartCategoryYear />
+        <ChartCategoryYear year={theYear}/>
         <View style={styles.category}>
           <FlatList
             keyExtractor={(item) => item.category}
@@ -73,20 +72,6 @@ class CostDetailsYear extends Component {
             />
           </View>
         </MyPopup>
-        
-        {/* {this.state.open && 
-        <View style={styles.list}>
-          <FlatList
-            //sort by date, (change it in the future) BUT do not recommend creating new Date objects inside the sort method. Have hit production performance issues specifically for that reason. Do not allocate memory (and GC) inside a sort method.
-            data={this.props.expenses
-              .filter(item => item.category.includes(this.state.selectedCategory))
-              .sort((a, b) => new Date(b.date) - new Date(a.date))}
-            renderItem={({ item }) => (
-            <CostItem item={item} />
-            )}
-          />
-        </View>} */}
-        
       </View>
     )
   }
