@@ -4,11 +4,9 @@ import { AntDesign } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { deleteCost } from '../../../src/actions/costAction';
 
-
 class CostItem extends Component {
   constructor(props){
     super(props)
-
   }
 
   removeItem = () =>{
@@ -62,7 +60,6 @@ const styles = StyleSheet.create({
   },
   itemSum: {
     marginRight:20,
-    // width:30,
   },
   delete: {
     textAlign:'right',
@@ -70,8 +67,5 @@ const styles = StyleSheet.create({
   },
   itemDate: {
     marginRight: 5,
-    // backgroundColor:'red',
-    // width:120,
-    // textAlign:'left'
   }
 });
