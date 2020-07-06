@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { AntDesign } from '@expo/vector-icons';
+import { connect } from 'react-redux';
 import CostItem from './CostItem';
 import CategoryItem from './CategoryItem';
-import { connect } from 'react-redux';
 import ChartCategoryMonth from './ChartCategoryMonth';
 import MyPopup from '../../lib/MyPopup';
-import { AntDesign } from '@expo/vector-icons';
+import NoData from '../expenses/lib/NoData';
 
 class CostDetailsMonth extends Component {
   constructor(props){
@@ -38,41 +39,49 @@ class CostDetailsMonth extends Component {
     
     return(
       <View style={styles.container}>
-        <ChartCategoryMonth month={theMonth}/>
-        <View style={styles.category}>
-          <FlatList
-            keyExtractor={(item) => item.category}
-            data={result}
-            renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => this.showMore(item)}>
-                <CategoryItem item={item}/>
-              </TouchableOpacity>
-            )}
-          />
+        {!result?.length ? 
+        <View style={styles.container}>
+          <NoData date={theMonth} /> 
         </View>
-        <MyPopup visible={this.state.modalOpen}>
-          <View style={styles.modal}>
-            <TouchableOpacity onPress={() => this.setState({ modalOpen: false })}>
-                <AntDesign 
-                  // style={{...styles.icon, ...styles.iconClose}} 
-                  style={styles.iconClose}
-                  name="close" 
-                  size={30} 
-                  color="black" 
-                />
-              </TouchableOpacity>
+        : 
+        <View style={styles.container}>
+          <ChartCategoryMonth month={theMonth}/>
+          <View style={styles.category}>
             <FlatList
-              //sort by date, (change it in the future) BUT do not recommend creating new Date objects inside the sort method. Have hit production performance issues specifically for that reason. Do not allocate memory (and GC) inside a sort method.
-              data={this.props.expenses
-                .filter(item => item.date.includes(theMonth))
-                .filter(item => item.category.includes(this.state.selectedCategory))
-                .sort((a, b) => new Date(b.date) - new Date(a.date))}
+              keyExtractor={(item) => item.category}
+              data={result}
               renderItem={({ item }) => (
-              <CostItem item={item} />
+                <TouchableOpacity onPress={() => this.showMore(item)}>
+                  <CategoryItem item={item}/>
+                </TouchableOpacity>
               )}
             />
           </View>
-        </MyPopup>
+          <MyPopup visible={this.state.modalOpen}>
+            <View style={styles.modal}>
+              <TouchableOpacity onPress={() => this.setState({ modalOpen: false })}>
+                  <AntDesign 
+                    // style={{...styles.icon, ...styles.iconClose}} 
+                    style={styles.iconClose}
+                    name="close" 
+                    size={30} 
+                    color="black" 
+                  />
+                </TouchableOpacity>
+              <FlatList
+                //sort by date, (change it in the future) BUT do not recommend creating new Date objects inside the sort method. Have hit production performance issues specifically for that reason. Do not allocate memory (and GC) inside a sort method.
+                data={this.props.expenses
+                  .filter(item => item.date.includes(theMonth))
+                  .filter(item => item.category.includes(this.state.selectedCategory))
+                  .sort((a, b) => new Date(b.date) - new Date(a.date))}
+                renderItem={({ item }) => (
+                <CostItem item={item} />
+                )}
+              />
+            </View>
+          </MyPopup>
+        </View>
+        }
       </View>
     )
   }
@@ -93,7 +102,6 @@ const styles = StyleSheet.create({
   },
   title: {
     padding:10,
-    backgroundColor:'red',
     textAlign:'center',
     fontSize:15,
   },
