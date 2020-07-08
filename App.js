@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Navigator from './component/routes/Drawer';
-import { createStore } from 'redux';
+import { AppLoading} from 'expo';
 import { Provider } from 'react-redux';
-import rootReducer from './src/reducers/rootReducer';
+import { store } from './src/store';
 
-const store = createStore(rootReducer);
+export default class App extends Component {
+  state = {
+    isReady:true
+  }
 
-export default function App() {
-  return (
-    <Provider store={store}>
-      <Navigator />
-    </Provider>
-  );
+  render() {
+    if(!this.state.isReady){
+      return <AppLoading />
+    }
+    return (
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
+    );
+  } 
 }
