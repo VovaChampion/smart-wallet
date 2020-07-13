@@ -117,23 +117,6 @@ const styles = StyleSheet.create({
   category: {
     padding:10
   },
-  item: {
-    flex:1,
-    flexDirection: 'row',
-    backgroundColor:'yellow', 
-    justifyContent:'space-between',
-    padding: 10,
-    marginTop: 6,
-    borderColor: '#bbb',
-    borderWidth: 1,
-    borderRadius: 10,
-    width:'85%',
-    marginLeft:'7%',
-    shadowOffset: { width: 1, height: 1 },
-    shadowColor: '#333',
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-  },
   modal: {
     width:wp('90%'),
     height:hp('70%') ,

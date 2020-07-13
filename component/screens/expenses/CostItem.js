@@ -51,21 +51,20 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     borderWidth: 1,
     borderRadius: 10,
-    width:'85%',
-    marginLeft:'7%',
+    // width:'100%',
+    // marginLeft:'7%',
     shadowOffset: { width: 1, height: 1 },
     shadowColor: '#333',
     shadowOpacity: 0.3,
     shadowRadius: 2,
   },
   itemSum: {
-    marginRight:20,
+    // marginRight:20,
   },
   delete: {
     textAlign:'right',
-    backgroundColor:'white', 
   },
   itemDate: {
-    marginRight: 5,
+    // marginRight: 5,
   }
 });
