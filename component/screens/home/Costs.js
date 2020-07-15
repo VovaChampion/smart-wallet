@@ -4,12 +4,14 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import moment from 'moment';
 import { connect } from 'react-redux';
 import SelectMonth from './lib/SelectMonth';
+import SelectYear from './lib/SelectYear';
 
 class Costs extends Component {
   constructor(props){
     super(props)
     this.state = {
-      month: moment().format("MMMM YYYY")
+      month: moment().format("MMMM YYYY"),
+      year: moment().format("YYYY")
     }
   }
 
@@ -18,36 +20,46 @@ class Costs extends Component {
     // send selected month to parent (HOME)     
     this.props.sendData(itemValue); 
   }
+
+  handleYear = (itemValue) => {
+    this.setState({year: itemValue});
+    // send selected year to parent (HOME)     
+    this.props.sendYear(itemValue); 
+  }
   
   render () {
     
-    // calculate the total amount of all costs
-    let totalSum = this.props.expenses.reduce((prev,next) => prev + Number(next.sum),0);  
-
     // filter needed elements 
     const filterItems = (arr, query) => {
       return arr.filter(el => el.date.toLowerCase().indexOf(query.toLowerCase()) !== -1)
     }
-    
+
+    // calculate the total amount of all costs
+    let totalYear = filterItems(this.props.expenses, this.state.year).reduce((prev,next) => prev + Number(next.sum),0); 
     let totalMonth = filterItems(this.props.expenses, this.state.month).reduce((prev,next) => prev + Number(next.sum),0);
-    // let totalMonth = filterItems(this.props.expenses, this.props.month).reduce((prev,next) => prev + Number(next.sum),0);
+    // console.log(totalYear);
+    // console.log(totalMonth);
+    
 
     return (
       <View style={styles.costs}>
         <View style={styles.data}>
           <TouchableOpacity onPress={this.props.showMonthList}>
-            <SelectMonth 
-              handleMonth={this.handleMonth}
-            />
+            <View style={styles.selectDate}>
+              <SelectMonth handleMonth={this.handleMonth}/>
+            </View>
             {/* toLocaleString() add spaces for the number  */}
-            <Text style={styles.total}>{totalMonth.toLocaleString()}</Text>
+            <Text style={styles.total}>{totalMonth.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
+            {/* <Text style={styles.total}>{totalMonth.toFixed(2)}</Text> */}
           </TouchableOpacity>
         </View>
         <View style={styles.data}>
           <TouchableOpacity onPress={this.props.showYearList}>
-            <Text style={styles.title}>All expenses</Text>
+            <View style={styles.selectDate}>
+              <SelectYear handleYear={this.handleYear}/>
+            </View>
             {/* toLocaleString() add spaces for the number  */}
-            <Text style={styles.total}>{totalSum.toLocaleString()}</Text>
+            <Text style={styles.total}>{totalYear.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
           </TouchableOpacity>
         </View>
         {/* <View style={styles.icons}>
@@ -63,13 +75,11 @@ class Costs extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
     expenses: state.expenses,
   }
 }
-  
 
 export default connect(mapStateToProps)(Costs);
 
@@ -77,11 +87,10 @@ const styles = StyleSheet.create({
   costs: {
     flex:1,
     flexDirection:'row',
-    // padding:10,
   },
   data: {
     flex:1,
-    backgroundColor:'green',
+    backgroundColor:'#5DADE2',
     width:wp('50%'),
     margin:2,
     borderRadius:10,
@@ -101,5 +110,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  selectDate:{
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1,  
   }
 });

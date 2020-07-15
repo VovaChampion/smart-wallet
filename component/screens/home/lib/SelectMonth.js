@@ -41,7 +41,7 @@ export default class SelectMonth extends Component {
             dateText:{
               textAlign: 'center',
               color: '#fff',
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: 'bold',
             }
           }}

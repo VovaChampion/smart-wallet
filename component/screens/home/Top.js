@@ -46,7 +46,7 @@ export default class Top extends Component {
 
 const styles = StyleSheet.create({
   headerTop: {
-    backgroundColor:'#85C1E9',
+    backgroundColor:'#5DADE2',
     paddingTop:20,
     height:70,
     flexDirection:'row', 

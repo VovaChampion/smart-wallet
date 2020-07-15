@@ -15,15 +15,21 @@ class Home extends Component {
   constructor(){
     super();
     this.state = {
-      month: moment().format("MMMM YYYY")
+      month: moment().format("MMMM YYYY"),
+      year: moment().format("YYYY")
     }
 
     this.submitHandler = this.submitHandler.bind(this);
     this.getData = this.getData.bind(this);
+    this.getYear = this.getYear.bind(this);
   }
 
   getData = (val) => {
     this.setState({month: val}); 
+  }
+
+  getYear = (val) => {
+    this.setState({year: val}); 
   }
   showMonthList = () => {
     this.props.navigation.navigate('CostDetailsMonth', {
@@ -33,7 +39,7 @@ class Home extends Component {
 
   showYearList = () => {
     this.props.navigation.navigate('CostDetailsYear', {
-      month: this.state.month });
+      year: this.state.year });
   }
 
   submitHandler (sum, date, category) {
@@ -81,7 +87,7 @@ class Home extends Component {
           </View>
           
           <View style={styles.content}>
-            <Costs showMonthList={this.showMonthList} showYearList={this.showYearList} sendData={this.getData} />
+            <Costs showMonthList={this.showMonthList} showYearList={this.showYearList} sendData={this.getData} sendYear={this.getYear} />
           </View>
           
           {/* <View style={styles.list}>
@@ -107,7 +113,7 @@ class Home extends Component {
           </View> */}
   
           <View style={styles.chart}>
-            <Chart />
+            <Chart year={this.state.year}/>
           </View>
   
           <View style={styles.bottom}>

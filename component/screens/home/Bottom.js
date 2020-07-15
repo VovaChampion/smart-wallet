@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity, Picker, AsyncStorag } from 'react-native';
+import { StyleSheet, TextInput, View, TouchableOpacity, AsyncStorag } from 'react-native';
 import { Button } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import MyPopup from '../../lib/MyPopup';
 import moment from 'moment';
-import DatePicker from 'react-native-datepicker';
 import SelectCategory from './lib/SelectCategory';
 import SelectDate from './lib/SelectDate';
 
@@ -21,30 +20,31 @@ export default class Bottom extends Component {
     }
 
     this.submitForm = this.submitForm.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  changeHandler = (val) => {
-    let newVal = '';
-    let numbers = '0123456789';
-
-    for (var i=0; i < val.length; i++) {
-      if(numbers.indexOf(val[i]) > -1 ) {
-        newVal = newVal + val[i];
+  handleInputChange(value) {
+    let lastValid = this.state.sum;
+    // the validation for number -> the second comma not to be allowed to enter
+    // var validNumber = new RegExp(/^\d*\.?\d*$/); // for dot
+    var validNumber = new RegExp(/^\d*\,?\d*$/); // for comma
+      if (validNumber.test(value)) {
+        lastValid = value;
+      } else {
+        value = this.state.sum;
       }
-      else {
-        // your call back function
-        alert("please enter numbers only");
-      }
-    }
-    this.setState({ sum: newVal });
-  };
-
-    // handleChange(value) {
-    //     this.setState({date: value})
-    // }
+    this.setState({ sum: lastValid });
+  }
 
   submitForm(){
-    this.props.submitHandler(this.state.sum, this.state.date, this.state.category);
+    // make number with . instead of ,
+    const mySum = this.state.sum.replace(/,/g, '.')
+    // leave only two decimails after ,
+    const newSum = Number(mySum).toFixed(2)
+    // send data to Redux-persist
+    this.props.submitHandler(newSum, this.state.date, this.state.category);
+    // console.log(newSum, this.state.date, this.state.category)
+    
     this.setState({ modalOpen: false });
   }
 
@@ -89,10 +89,10 @@ export default class Bottom extends Component {
 
             <TextInput 
               style={styles.input} 
-              keyboardType ="numeric"
+              keyboardType ="decimal-pad"
               autoCorrect={false}
               placeholder='add expenses'
-              onChangeText={this.changeHandler} 
+              onChangeText={ this.handleInputChange }
               value={this.state.sum} 
             />
 
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     position:"absolute",
     bottom: 0,
     height:60,
-    backgroundColor: '#85C1E9',
+    backgroundColor:'#5DADE2',
     width:wp('100%')
   },
   icon: {
@@ -157,11 +157,9 @@ const styles = StyleSheet.create({
   },
   category: {
     margin:10,
-    // alignItems: "center",
   },
   selectDate: {
     marginVertical:15,
   }
 });
-
   
