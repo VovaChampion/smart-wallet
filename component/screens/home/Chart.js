@@ -24,8 +24,8 @@ class Chart extends Component {
     // console.log(result);
 
     const sum = (() => {
-      // get sum from array
-      let array = result.map(elem => elem.totalSum)
+      // get sum from array and make it with 1 decimail
+      let array = result.map(elem => elem.totalSum.toFixed(1))
       // check if array is not empty
       if (!array?.length) { // explanation: (array === undefined || array.length == 0)
         return [0];

@@ -20,5 +20,7 @@ const middleware = applyMiddleware(thunk);
 const store = createStore(pReducer, middleware);
 
 const persistor = persistStore(store);
+// to clear persistStore uncommit the line below
+// persistor.purge() 
 
 export { persistor, store };

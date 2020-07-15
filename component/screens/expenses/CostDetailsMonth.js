@@ -36,6 +36,9 @@ class CostDetailsMonth extends Component {
       return r                   
       }, {}))
       .sort((a, b) => (b.totalSum) - (a.totalSum)) // sort by totalSum
+
+    //console.log(result);
+    
     
     return(
       <View style={styles.container}>
@@ -74,7 +77,7 @@ class CostDetailsMonth extends Component {
                   .filter(item => item.date.includes(theMonth))
                   .filter(item => item.category.includes(this.state.selectedCategory))
                   .sort((a, b) => new Date(b.date) - new Date(a.date))}
-                renderItem={({ item }) => (
+                  renderItem={({ item }) => (
                 <CostItem item={item} />
                 )}
               />

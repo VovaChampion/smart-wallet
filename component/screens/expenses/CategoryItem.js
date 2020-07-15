@@ -9,9 +9,10 @@ class CategoryItem extends Component {
 
   render(){
     const item = this.props.item
+    
     return (
       <View style={styles.item}>
-        <Text style={styles.itemText}>{item.totalSum}</Text>
+        <Text style={styles.itemText}>{parseFloat(item.totalSum).toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
         <Text style={styles.itemText}>{item.category}</Text>
         <MaterialIcons  name="expand-more" size={15} color="black" />
       </View>

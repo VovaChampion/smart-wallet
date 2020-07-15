@@ -37,6 +37,9 @@ class Costs extends Component {
     // calculate the total amount of all costs
     let totalYear = filterItems(this.props.expenses, this.state.year).reduce((prev,next) => prev + Number(next.sum),0); 
     let totalMonth = filterItems(this.props.expenses, this.state.month).reduce((prev,next) => prev + Number(next.sum),0);
+    // console.log(totalYear);
+    // console.log(totalMonth);
+    
 
     return (
       <View style={styles.costs}>
@@ -46,7 +49,8 @@ class Costs extends Component {
               <SelectMonth handleMonth={this.handleMonth}/>
             </View>
             {/* toLocaleString() add spaces for the number  */}
-            <Text style={styles.total}>{totalMonth.toLocaleString()}</Text>
+            <Text style={styles.total}>{totalMonth.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
+            {/* <Text style={styles.total}>{totalMonth.toFixed(2)}</Text> */}
           </TouchableOpacity>
         </View>
         <View style={styles.data}>
@@ -55,7 +59,7 @@ class Costs extends Component {
               <SelectYear handleYear={this.handleYear}/>
             </View>
             {/* toLocaleString() add spaces for the number  */}
-            <Text style={styles.total}>{totalYear.toLocaleString()}</Text>
+            <Text style={styles.total}>{totalYear.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
           </TouchableOpacity>
         </View>
         {/* <View style={styles.icons}>

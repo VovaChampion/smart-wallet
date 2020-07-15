@@ -10,16 +10,16 @@ class CostItem extends Component {
   }
 
   removeItem = () =>{
-    // console.log(this.props.item.key)
     this.props.deleteCost(this.props.item.key);
   }
   
   render(){
     const item = this.props.item
+    // console.log(parseFloat(this.props.item.sum))
     return (
       <TouchableOpacity>
         <View style={styles.item}>
-          <Text style={styles.itemSum}>{item.sum}</Text>
+          <Text style={styles.itemSum}>{parseFloat(item.sum).toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
           <Text style={styles.itemDate}>{item.category}</Text>
           <Text style={styles.itemDate}>{item.date}</Text>
           <TouchableOpacity onPress={() => this.removeItem(item.key)}> 
