@@ -36,7 +36,12 @@ export default class SelectDate extends Component {
             },
             dateInput: {
               marginLeft: 36,
-              borderRadius: 5,
+              borderRadius: 8,
+            },
+            dateText:{
+              textAlign: 'center',
+              color: 'black',
+              fontSize: 18,
             }
           }}
           onDateChange={this.handleDateChange}

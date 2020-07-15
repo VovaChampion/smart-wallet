@@ -20,26 +20,31 @@ export default class Bottom extends Component {
     }
 
     this.submitForm = this.submitForm.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  changeHandler = (val) => {
-    let newVal = '';
-    let numbers = '0123456789';
-
-    for (var i=0; i < val.length; i++) {
-      if(numbers.indexOf(val[i]) > -1 ) {
-        newVal = newVal + val[i];
+  handleInputChange(value) {
+    let lastValid = this.state.sum;
+    // the validation for number -> the second comma not to be allowed to enter
+    // var validNumber = new RegExp(/^\d*\.?\d*$/); // for dot
+    var validNumber = new RegExp(/^\d*\,?\d*$/); // for comma
+      if (validNumber.test(value)) {
+        lastValid = value;
+      } else {
+        value = this.state.sum;
       }
-      else {
-        // your call back function
-        alert("please enter numbers only");
-      }
-    }
-    this.setState({ sum: newVal });
-  };
+    this.setState({ sum: lastValid });
+  }
 
   submitForm(){
-    this.props.submitHandler(this.state.sum, this.state.date, this.state.category);
+    // make number with . instead of ,
+    const mySum = this.state.sum.replace(/,/g, '.')
+    // leave only two decimails after ,
+    const newSum = Number(mySum).toFixed(2)
+    // send data to Redux-persist
+    this.props.submitHandler(newSum, this.state.date, this.state.category);
+    // console.log(newSum, this.state.date, this.state.category)
+    
     this.setState({ modalOpen: false });
   }
 
@@ -84,10 +89,10 @@ export default class Bottom extends Component {
 
             <TextInput 
               style={styles.input} 
-              keyboardType ="numeric"
+              keyboardType ="decimal-pad"
               autoCorrect={false}
               placeholder='add expenses'
-              onChangeText={this.changeHandler} 
+              onChangeText={ this.handleInputChange }
               value={this.state.sum} 
             />
 

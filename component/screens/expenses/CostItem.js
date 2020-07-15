@@ -10,16 +10,16 @@ class CostItem extends Component {
   }
 
   removeItem = () =>{
-    // console.log(this.props.item.key)
     this.props.deleteCost(this.props.item.key);
   }
   
   render(){
     const item = this.props.item
+    // console.log(parseFloat(this.props.item.sum))
     return (
       <TouchableOpacity>
         <View style={styles.item}>
-          <Text style={styles.itemSum}>{item.sum}</Text>
+          <Text style={styles.itemSum}>{parseFloat(item.sum).toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
           <Text style={styles.itemDate}>{item.category}</Text>
           <Text style={styles.itemDate}>{item.date}</Text>
           <TouchableOpacity onPress={() => this.removeItem(item.key)}> 
@@ -51,21 +51,20 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     borderWidth: 1,
     borderRadius: 10,
-    width:'85%',
-    marginLeft:'7%',
+    // width:'100%',
+    // marginLeft:'7%',
     shadowOffset: { width: 1, height: 1 },
     shadowColor: '#333',
     shadowOpacity: 0.3,
     shadowRadius: 2,
   },
   itemSum: {
-    marginRight:20,
+    // marginRight:20,
   },
   delete: {
     textAlign:'right',
-    backgroundColor:'white', 
   },
   itemDate: {
-    marginRight: 5,
+    // marginRight: 5,
   }
 });
