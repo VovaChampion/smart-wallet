@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 import { connect } from 'react-redux';
 import { deleteCost } from '../../../src/actions/costAction';
+
 
 class CostItem extends Component {
   constructor(props){
@@ -19,11 +21,11 @@ class CostItem extends Component {
     return (
       <TouchableOpacity>
         <View style={styles.item}>
-          <Text style={styles.itemSum}>{parseFloat(item.sum).toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
-          <Text style={styles.itemDate}>{item.category}</Text>
-          <Text style={styles.itemDate}>{item.date}</Text>
+          <Text style={styles.items}>{parseFloat(item.sum).toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
+          <Text style={styles.items}>{item.category}</Text>
+          <Text style={styles.items}>{item.date}</Text>
           <TouchableOpacity onPress={() => this.removeItem(item.key)}> 
-            <AntDesign style={styles.delete} name="delete" size={15} color="black" />
+            <AntDesign style={styles.delete} name="delete" size={15} color={MYCOLORS.black} />
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
@@ -43,28 +45,24 @@ export default connect(null, mapDispatchToProps)(CostItem)
 const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
-    backgroundColor:'yellow', 
+    backgroundColor:MYCOLORS.blue,  
     justifyContent:'space-between',
-    color:'black',
+    color:MYCOLORS.black,
     padding: 10,
     marginTop: 6,
     borderColor: '#bbb',
     borderWidth: 1,
     borderRadius: 10,
-    // width:'100%',
-    // marginLeft:'7%',
     shadowOffset: { width: 1, height: 1 },
     shadowColor: '#333',
     shadowOpacity: 0.3,
     shadowRadius: 2,
   },
-  itemSum: {
-    // marginRight:20,
+  items: {
+    color:MYCOLORS.black,
+    fontFamily: FONTS.pr
   },
   delete: {
     textAlign:'right',
-  },
-  itemDate: {
-    // marginRight: 5,
   }
 });

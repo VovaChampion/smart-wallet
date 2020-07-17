@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text,  Linking, Button, Image } from 'react-native';
-// import { heightPercentageToDP } from 'react-native-responsive-screen';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 
 export default function About() {
   return (
@@ -20,7 +20,6 @@ export default function About() {
       <Text style={styles.contact}>If you have any questions or suggestions write here</Text>
       <Button onPress={() => Linking.openURL('mailto:vova.champion@gmail.com?subject=SupportSmartWallet&body=Hi') }
       title="support@sw.com" />  
-      
     </View>
   );
 }
@@ -32,20 +31,25 @@ const styles = StyleSheet.create({
     padding:10,
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: '#fff',
+    backgroundColor: MYCOLORS.white,
   },
   title: {
     fontWeight: 'bold',
     fontSize: 18,
     padding:10,
+    color: MYCOLORS.black,
+    fontFamily: FONTS.pr
   },
   content: {
     fontSize: 16,
     padding:10,
-    color: '#333',
+    color: MYCOLORS.black,
+    fontFamily: FONTS.pr
   },
   contact: {
     padding:10,
+    color: MYCOLORS.black,
+    fontFamily: FONTS.pr
   },
   logo: {
     width: '100%',

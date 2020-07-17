@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { connect } from 'react-redux';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 import DismissKeyboard from '../../lib/DismissKeyboard';
 import CatItem from './CatItem';
 import AddCategory from './AddCategory';
@@ -85,27 +86,30 @@ const styles = StyleSheet.create({
     padding:10,
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: '#fff',
+    backgroundColor: MYCOLORS.white,
   },
   title: {
     fontWeight: 'bold',
     fontSize: 18,
     padding:10,
+    color: MYCOLORS.black,
+    fontFamily: FONTS.pr
   },
   content: {
     flex:1,
     fontSize: 16,
     padding:10,
-    color: '#333',
+    color: MYCOLORS.black,
+    fontFamily: FONTS.pr
   },
   option:{
-    backgroundColor:'#5DADE2',
+    backgroundColor:MYCOLORS.blue,
     borderColor: '#bbb',
     borderWidth: 1,
     borderRadius: 10,
     width:wp('80%'),
     shadowOffset: { width: 1, height: 1 },
-    shadowColor: '#333',
+    shadowColor: MYCOLORS.black,
     shadowOpacity: 0.3,
     shadowRadius: 2,
     alignItems: 'center'
