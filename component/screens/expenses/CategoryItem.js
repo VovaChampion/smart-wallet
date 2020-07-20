@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 
 class CategoryItem extends Component {
   constructor(props){
@@ -14,7 +15,7 @@ class CategoryItem extends Component {
       <View style={styles.item}>
         <Text style={styles.itemText}>{parseFloat(item.totalSum).toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
         <Text style={styles.itemText}>{item.category}</Text>
-        <MaterialIcons  name="expand-more" size={15} color="black" />
+        <MaterialIcons  name="expand-more" size={15} color={MYCOLORS.black} />
       </View>
     )
   } 
@@ -25,7 +26,7 @@ export default CategoryItem
 const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
-    backgroundColor:'#5DADE2', 
+    backgroundColor:MYCOLORS.blue, 
     justifyContent:'space-between',
     color:'black',
     padding: 10,
@@ -36,11 +37,13 @@ const styles = StyleSheet.create({
     width:'85%',
     marginLeft:'7%',
     shadowOffset: { width: 1, height: 1 },
-    shadowColor: '#333',
+    shadowColor: MYCOLORS.black,
     shadowOpacity: 0.3,
     shadowRadius: 2,
   },
   itemText: {
     marginRight: 5,
+    color:MYCOLORS.black,
+    fontFamily: FONTS.pr
   }
 });

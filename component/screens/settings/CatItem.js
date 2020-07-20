@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { connect } from 'react-redux';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 import { deleteCat } from '../../../src/actions/costAction';
 
 
@@ -23,9 +24,9 @@ class CatItem extends Component {
     return (
       <TouchableOpacity>
         <View style={styles.item}>
-          <Text style={styles.itemDate}>{item.name}</Text>
+          <Text style={styles.items}>{item.name}</Text>
           <TouchableOpacity onPress={() => this.removeItem(item.id)}> 
-            <AntDesign style={styles.delete} name="delete" size={15} color="black" />
+            <AntDesign style={styles.delete} name="delete" size={15} color={MYCOLORS.black} />
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
@@ -45,9 +46,9 @@ export default connect(null, mapDispatchToProps)(CatItem)
 const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
-    backgroundColor:'yellow', 
+    backgroundColor:MYCOLORS.blue, 
     justifyContent:'space-between',
-    color:'black',
+    color:MYCOLORS.black,
     padding: 10,
     marginTop: 6,
     borderColor: '#bbb',
@@ -56,19 +57,16 @@ const styles = StyleSheet.create({
     width:'85%',
     marginLeft:'7%',
     shadowOffset: { width: 1, height: 1 },
-    shadowColor: '#333',
+    shadowColor: MYCOLORS.black,
     shadowOpacity: 0.3,
     shadowRadius: 2,
   },
-  itemSum: {
-    marginRight:20,
-    // width:30,
-  },
   delete: {
-    textAlign:'right',
-    backgroundColor:'white', 
+    // textAlign:'right',
   },
-  itemDate: {
+  items: {
     marginRight: 5,
+    color:MYCOLORS.black,
+    fontFamily: FONTS.pr
   }
 });

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Picker, View } from 'react-native';
 import { connect } from 'react-redux';
+import { MYCOLORS, FONTS } from '../../../lib/Styles';
 
 class SelectCategory extends Component {
   constructor(props){
@@ -22,7 +23,7 @@ class SelectCategory extends Component {
         <Picker
           selectedValue={this.state.selectedCategory}
           style={{ height: 100, width: 300, marginTop:-20 }}
-          itemStyle={{height: 120}}
+          itemStyle={{height: 120, color: MYCOLORS.black, fontFamily:FONTS.pr}}
           onValueChange={this.handleCategoryChange}
         >
           {this.props.categories.map((item, index) => {

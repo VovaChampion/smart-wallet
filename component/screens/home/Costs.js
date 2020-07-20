@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, withNavigation} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import moment from 'moment';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 import { connect } from 'react-redux';
 import SelectMonth from './lib/SelectMonth';
 import SelectYear from './lib/SelectYear';
@@ -87,29 +88,24 @@ const styles = StyleSheet.create({
   costs: {
     flex:1,
     flexDirection:'row',
+    padding:3,
   },
   data: {
     flex:1,
-    backgroundColor:'#5DADE2',
+    backgroundColor:MYCOLORS.blue,
     width:wp('50%'),
     margin:2,
     borderRadius:10,
-    height: hp('15%'),
+    height: hp('12%'),
     justifyContent:'space-between',
   },
-  title:  {
-    textAlign: 'center',
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-    padding:7
-  },
   total:{
-    padding:10,
-    color:'red',
+    paddingTop:12,
+    color:MYCOLORS.white,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: FONTS.pr
   },
   selectDate:{
     shadowColor: '#000',

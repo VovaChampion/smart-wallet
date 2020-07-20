@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { BarChart } from 'react-native-chart-kit';
 import { connect } from 'react-redux';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 
 class Chart extends Component {
 
@@ -48,25 +49,25 @@ class Chart extends Component {
     return (
       <View style={styles.chart}>
         <View >
-          <Text style={styles.title}>Cost chart</Text>
+          <Text style={styles.title}>Expenses for the year</Text>
         </View>
 
         {/* <ScrollView horizontal={true}> */}
-          <BarChart
-            data={newLine}
-            width={Dimensions.get('window').width-5}
-            height={hp("40%")}
-            chartConfig={chartConfig}
-            verticalLabelRotation={30}
-            showValuesOnTopOfBars={true}
-            bezier
-            style={graphStyle}
-            // gridMin={0}
-            // withHorizontalLabels={false}
-            // yAxisLabel={'$'}
-            // withInnerLines={false}
-            // fromZero={true}
-          />
+        <BarChart
+          data={newLine}
+          width={Dimensions.get('window').width-5}
+          height={hp("40%")}
+          chartConfig={chartConfig}
+          verticalLabelRotation={30}
+          showValuesOnTopOfBars={true}
+          bezier
+          style={graphStyle}
+          // gridMin={0}
+          // withHorizontalLabels={false}
+          // yAxisLabel={'$'}
+          // withInnerLines={false}
+          // fromZero={true}
+        />
         {/* </ScrollView> */}
       </View>
     );
@@ -83,10 +84,17 @@ export default connect(mapStateToProps)(Chart)
 
 
 const styles = StyleSheet.create({
+  chart:{
+    // height:hp('100%'),
+    // marginBottom:10
+  },
   title: {
+    padding:5,
     fontWeight: 'bold',
     fontSize: 18,
     textAlign:'center',
+    color:MYCOLORS.black,
+    fontFamily: FONTS.pr
   },
 });
 const graphStyle = {

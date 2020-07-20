@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Picker, TouchableOpacity} from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+// import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Feather, Entypo } from '@expo/vector-icons';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 
 
 export default class Top extends Component {
@@ -22,8 +23,8 @@ export default class Top extends Component {
   render () {
     return (
       <View style={styles.headerTop}>
-          
-        <Text style={styles.title}>Expenses: {this.state.dashboardName} </Text> 
+        <View style={styles.icons}>
+          <Text style={styles.title}>Expenses: {this.state.dashboardName} </Text> 
           {/* <Picker
               selectedValue={this.state.dashboardName}
               style={styles.picker}
@@ -31,12 +32,13 @@ export default class Top extends Component {
               <Picker.Item label="Family" value="Family" />
               <Picker.Item label="Work" value="Work" />
           </Picker> */}
+        </View>
         <View style={styles.icons}>
           <TouchableOpacity onPress={this.editHandler}>
-            <Feather name="edit" size={30} color="white" />
+            <Feather name="edit" size={30} color={MYCOLORS.black} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.plusHandler}>
-            <Entypo name="plus" size={30} color="white" />
+            <Entypo name="plus" size={30} color={MYCOLORS.black} />
           </TouchableOpacity>
         </View>
       </View>
@@ -46,25 +48,28 @@ export default class Top extends Component {
 
 const styles = StyleSheet.create({
   headerTop: {
-    backgroundColor:'#5DADE2',
-    paddingTop:20,
-    height:70,
+    flex:1,
+    backgroundColor:MYCOLORS.blue,
+    height:'100%',
     flexDirection:'row', 
     flexWrap:'wrap',
     justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
   },
   title:  {
-    color: '#fff',
+    color: MYCOLORS.black,
     fontSize: 20,
     fontWeight: 'bold',
+    fontFamily: FONTS.pr
   },
   icons:{
-    paddingLeft:10,
-    flexWrap:'wrap',
+    paddingLeft:20,
+    flexDirection:'row',
   },
-  picker: {
-    height:5,
-    width:'auto',
-    color: '#fff',
-  }
+  // picker: {
+  //   height:5,
+  //   width:'auto',
+  //   color: '#fff',
+  // }
 });

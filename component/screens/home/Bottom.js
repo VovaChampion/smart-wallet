@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import MyPopup from '../../lib/MyPopup';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 import moment from 'moment';
 import SelectCategory from './lib/SelectCategory';
 import SelectDate from './lib/SelectDate';
@@ -71,7 +72,7 @@ export default class Bottom extends Component {
             style={styles.icon} 
             name="pluscircleo" 
             size={30} 
-            color="black" 
+            color={MYCOLORS.black} 
           />
         </TouchableOpacity>
 
@@ -117,17 +118,18 @@ export default class Bottom extends Component {
 
 const styles = StyleSheet.create({
   footer: {
-    position:"absolute",
-    bottom: 0,
-    height:60,
-    backgroundColor:'#5DADE2',
-    width:wp('100%')
+    backgroundColor:MYCOLORS.blue,
+    width:wp('100%'),
+    height:'100%',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
   },
   icon: {
     textAlign:'center',
-    paddingTop:15
   },
   input: {
+    fontFamily: FONTS.pr,
     marginBottom:10,
     paddingHorizontal: 8,
     paddingVertical: 2,

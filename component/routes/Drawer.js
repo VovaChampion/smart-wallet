@@ -1,5 +1,6 @@
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
+import { MYCOLORS, FONTS } from '../lib/Styles';
 
 // stacks
 import HomeStack from './HomeStack';
@@ -18,7 +19,14 @@ const RootDrawerNavigator = createDrawerNavigator({
 		screen: SettingsStack,
 	}
 },
-	{drawerPosition: 'right'},
+{ contentOptions: {
+		labelStyle: {
+			color: MYCOLORS.black,
+    	fontFamily: FONTS.pr
+		},
+	},
+	drawerPosition: 'right',
+}
 );
 
 export default createAppContainer(RootDrawerNavigator);
