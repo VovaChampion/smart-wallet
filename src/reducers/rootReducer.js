@@ -19,7 +19,8 @@ const initState = {
     { id:'6', name: 'clothes' },
     { id:'7', name: 'utilities' },
     { id:'8', name: 'vacation' },
-  ]
+  ],
+  limit: {lim:'1000'}
 }
 
 const rootReducer = (state = initState, action) => {

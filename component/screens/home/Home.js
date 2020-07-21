@@ -83,22 +83,13 @@ class Home extends Component {
     return (
       <DismissKeyboard>
         <View style={styles.container}>
-          <View style={styles.top}>
+          {/* <View style={styles.top}>
             <Top />
-          </View>
+          </View> */}
           
-          <View style={styles.content}>
+          <View style={styles.cost}>
             <Costs showMonthList={this.showMonthList} showYearList={this.showYearList} sendData={this.getData} sendYear={this.getYear} />
           </View>
-          
-          {/* <View style={styles.list}>
-            <FlatList
-              data={this.state.expenses}
-              renderItem={({ item }) => (
-                <ListCosts item={item} removeItem={this.removeItem} />
-              )}
-            />
-          </View> */}
 
           {/* <View style={styles.list}>
             <FlatList
@@ -136,12 +127,12 @@ class Home extends Component {
       justifyContent: 'center',
       //fontFamily: FONTS.sf
     },
-    top: {
-      flex: 1,
-      width:wp('100%'),
-    },
-    content: {
-      flex: 1,
+    // top: {
+    //   flex: 1,
+    //   width:wp('100%'),
+    // },
+    cost: {
+      flex: 2,
       width:wp('100%'),
     },
     chart: {
