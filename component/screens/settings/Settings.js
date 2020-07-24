@@ -47,6 +47,7 @@ class Settings extends Component {
           </TouchableOpacity>
           {this.state.openCategory && 
             <View style={styles.content}>
+              <Text style={styles.text}>Here you can manage your categories</Text>
               <AddCategory /> 
               {/* <View style={styles.content}> */}
                 <FlatList
@@ -120,5 +121,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 2,
     alignItems: 'center'
+  },
+  text:{
+    padding: 10,
+    fontSize:16,
+    fontFamily: FONTS.pr
   }
 });

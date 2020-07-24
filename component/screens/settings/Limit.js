@@ -64,8 +64,8 @@ class Limit extends Component {
   render(){   
     return (
       <View style={styles.container}>
+        <Text style={styles.text}>Here you can enter your spending limit</Text>
         <View style={styles.item}>
-          {/* <Text style={styles.items}>{myLimit.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text> */}
           <TextInput 
             // style={styles.items} 
             keyboardType ="numeric"
@@ -79,7 +79,7 @@ class Limit extends Component {
         
         <MyPopup visible={this.state.modalOpen}>
           <View style={styles.modal}>
-            <Text style={styles.text}>The limit successfully changed</Text>
+            <Text style={styles.modalText}>The limit successfully changed</Text>
           </View>
         </MyPopup>  
       </View> 
@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
     shadowColor: MYCOLORS.black,
     shadowOpacity: 0.3,
     shadowRadius: 2,
-    
   },
   items: {
     marginRight: 5,
@@ -145,11 +144,16 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
   },
-  text: {
+  modalText: {
     fontWeight:'bold',
     fontSize:16,
     paddingTop:12,
     textAlign:'center',
+    fontFamily: FONTS.pr
+  },
+  text:{
+    padding: 10,
+    fontSize:16,
     fontFamily: FONTS.pr
   }
 });
