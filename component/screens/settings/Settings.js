@@ -24,8 +24,16 @@ class Settings extends Component {
     });
   }
 
+  // run changing toggle from child 'Limit'
+  changeToggle = (val) => {
+    // console.log(val)
+    this.setState({
+      openLimit: val
+    })
+  };
+
   render() {
-    
+
     return (
       <DismissKeyboard>
         <View style={styles.container}>
@@ -40,7 +48,7 @@ class Settings extends Component {
           {this.state.openCategory && 
             <View style={styles.content}>
               <AddCategory /> 
-              <View style={styles.content}>
+              {/* <View style={styles.content}> */}
                 <FlatList
                   keyExtractor={(item) => item.id}
                   data={this.props.categories}
@@ -49,7 +57,7 @@ class Settings extends Component {
                   )}
                 />
               </View>
-            </View>
+            // </View>
           }
 
           <TouchableOpacity onPress={() => this.toggle('openLimit')}> 
@@ -59,35 +67,9 @@ class Settings extends Component {
           </TouchableOpacity>
           {this.state.openLimit && 
             <View style={styles.content}>
-              <Limit />
-              {/* <View style={styles.content}>
-                <FlatList
-                  keyExtractor={(item) => item.id}
-                  data={this.props.categories}
-                  renderItem={({ item }) => (
-                  <CatItem item={item} />
-                  )}
-                />
-              </View> */}
+              <Limit changeToggle={this.changeToggle}/>
             </View>
           }
-          
-
-          {/* option 2 */}
-          {/* <TouchableOpacity onPress={() => this.toggle('openC')}> 
-            <Text style={{...styles.title, ...styles.option}}>Category2</Text>
-          </TouchableOpacity>
-          {this.state.openC && 
-            <View style={styles.content}>
-              <AddCategory /> 
-              <View >
-                <Text>Hello</Text>
-                <Text>Hello</Text>
-                <Text>Hello</Text>
-              </View>
-            </View>
-          } */}
-
         </View>
       </DismissKeyboard>
     );

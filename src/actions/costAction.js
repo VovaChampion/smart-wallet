@@ -26,4 +26,9 @@ export const addCat = (cat) => {
   }
 }
 
-
+export const updateLimit = (lim) => {
+  return {
+    type: 'UPDATE_LIMIT',
+    lim: lim
+  }
+}
