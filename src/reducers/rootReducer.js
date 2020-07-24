@@ -19,7 +19,8 @@ const initState = {
     { id:'6', name: 'clothes' },
     { id:'7', name: 'utilities' },
     { id:'8', name: 'vacation' },
-  ]
+  ],
+  limit: {lim:'1000'}
 }
 
 const rootReducer = (state = initState, action) => {
@@ -28,15 +29,12 @@ const rootReducer = (state = initState, action) => {
       let newExpenses = state.expenses.filter(cost => {
         return action.key !== cost.key
       })
-
-      // let totalSum = state.expenses.reduce((prev,next) => prev + Number(next.sum),0);
       return {
         ...state,
         expenses: newExpenses
       }
     }
     case 'ADD_COST': {
-      // let totalSum2 = state.expenses.reduce((prev,next) => prev + Number(next.sum),0);
       return {
         ...state,
         expenses: [action.cost, ...state.expenses]
@@ -58,6 +56,13 @@ const rootReducer = (state = initState, action) => {
         categories: [action.cat, ...state.categories]
       }
     }
+    case 'UPDATE_LIMIT': 
+      {
+        return {
+          ...state,
+          limit: action.lim
+        }
+      }
     default:
       return state;
   }
