@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
-
+import { MYCOLORS } from '../lib/Styles';
 import Home from '../screens/home/Home';
 import Header from '../shared/Header';
 import CostDetailsMonth from '../screens/expenses/CostDetailsMonth';
@@ -32,7 +32,7 @@ const screens = {
 // home stack navigator screens
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    headerTintColor: '#444',
+    headerTintColor: MYCOLORS.black,
     headerStyle: { backgroundColor: '#eee', height: 80 }
   }
 });

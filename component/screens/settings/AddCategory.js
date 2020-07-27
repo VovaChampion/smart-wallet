@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, TextInput, View, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { connect } from 'react-redux';
 import { addCat } from '../../../src/actions/costAction';
@@ -74,16 +75,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent:'space-between',
-    color:'black',
-    padding: 10,
-    marginTop: 6,
+    color:MYCOLORS.black,
+    paddingBottom: 10,
+    paddingTop: 10,
     width:wp('81%'),
-    marginLeft:hp('2%'),
-    // borderColor: '#bbb',
-    // borderWidth: 1,
-    // borderRadius: 10,
     shadowOffset: { width: 1, height: 1 },
-    shadowColor: '#333',
+    shadowColor: MYCOLORS.black,
     shadowOpacity: 0.3,
     shadowRadius: 2,
   },

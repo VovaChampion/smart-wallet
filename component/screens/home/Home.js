@@ -9,6 +9,7 @@ import DismissKeyboard from '../../lib/DismissKeyboard';
 import { connect } from 'react-redux';
 import { addCost } from '../../../src/actions/costAction';
 import moment from 'moment';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 
 
 class Home extends Component {
@@ -82,22 +83,13 @@ class Home extends Component {
     return (
       <DismissKeyboard>
         <View style={styles.container}>
-          <View style={styles.top}>
+          {/* <View style={styles.top}>
             <Top />
-          </View>
+          </View> */}
           
-          <View style={styles.content}>
+          <View style={styles.cost}>
             <Costs showMonthList={this.showMonthList} showYearList={this.showYearList} sendData={this.getData} sendYear={this.getYear} />
           </View>
-          
-          {/* <View style={styles.list}>
-            <FlatList
-              data={this.state.expenses}
-              renderItem={({ item }) => (
-                <ListCosts item={item} removeItem={this.removeItem} />
-              )}
-            />
-          </View> */}
 
           {/* <View style={styles.list}>
             <FlatList
@@ -129,34 +121,36 @@ class Home extends Component {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      height:hp('100%'),
+      backgroundColor: MYCOLORS.white,
       alignItems: 'center',
       justifyContent: 'center',
+      //fontFamily: FONTS.sf
     },
-    top: {
-      flex: 1,
+    // top: {
+    //   flex: 1,
+    //   width:wp('100%'),
+    // },
+    cost: {
+      flex: 2,
       width:wp('100%'),
-    },
-    content: {
-      flex: 1.5,
-      width:wp('100%'),
-      // backgroundColor:'blue'
     },
     chart: {
-      flex: 3,
+      flex: 3.5,
     },
     bottom: {
       flex: 1,
       width:wp('100%'),
+      backgroundColor:'pink'
     },
-    list: {
-      flex: 1,
-      width:wp('100%'),
-      backgroundColor:'red',
-      display:'flex',
-      flexDirection:'row',
-      overflow:'scroll'
-    }
+    // list: {
+    //   flex: 1,
+    //   width:wp('100%'),
+    //   backgroundColor:'red',
+    //   display:'flex',
+    //   flexDirection:'row',
+    //   overflow:'scroll'
+    // }
   });
 
 const mapStateToProps = (state) => {

@@ -4,6 +4,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { PieChart } from 'react-native-chart-kit';
 import { connect } from 'react-redux';
 import Colors from './lib/Colors';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 
 class ChartCategoryMonth extends Component {
 
@@ -55,9 +56,11 @@ const styles = StyleSheet.create({
     textAlign:'center',
     fontWeight: 'bold',
     fontSize: 18,
+    color:MYCOLORS.black,
+    fontFamily: FONTS.pr
   }
 });
 
 const chartConfig = {
-  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`
 }

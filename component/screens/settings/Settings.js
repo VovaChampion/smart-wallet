@@ -2,41 +2,54 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { connect } from 'react-redux';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 import DismissKeyboard from '../../lib/DismissKeyboard';
 import CatItem from './CatItem';
 import AddCategory from './AddCategory';
+import Limit from './Limit';
  
 class Settings extends Component {
   constructor(props){
     super(props)
     this.state = {
-      openCat: false,
-      openC: false,
+      openCategory: false,
+      openLimit: false,
     }
   }
 
   toggle(toggler) {
     let togglerStatus = this.state[toggler]; //check the status of the toggle you clicked
     this.setState({
-        [toggler]: !togglerStatus // change the status only for the toggle you clicked
+      [toggler]: !togglerStatus // change the status only for the toggle you clicked
     });
   }
 
+  // run changing toggle from child 'Limit'
+  changeToggle = (val) => {
+    // console.log(val)
+    this.setState({
+      openLimit: val
+    })
+  };
+
   render() {
-    
+
     return (
       <DismissKeyboard>
         <View style={styles.container}>
+          
           <Text style={styles.title}>Settings</Text>
-          <TouchableOpacity onPress={() => this.toggle('openCat')}> 
+          
+          <TouchableOpacity onPress={() => this.toggle('openCategory')}> 
             <View style={styles.option}>
               <Text style={styles.title}>Category</Text>
             </View>
           </TouchableOpacity>
-          {this.state.openCat && 
+          {this.state.openCategory && 
             <View style={styles.content}>
+              <Text style={styles.text}>Here you can manage your categories</Text>
               <AddCategory /> 
-              <View style={styles.content}>
+              {/* <View style={styles.content}> */}
                 <FlatList
                   keyExtractor={(item) => item.id}
                   data={this.props.categories}
@@ -45,25 +58,19 @@ class Settings extends Component {
                   )}
                 />
               </View>
+            // </View>
+          }
+
+          <TouchableOpacity onPress={() => this.toggle('openLimit')}> 
+            <View style={styles.option}>
+              <Text style={styles.title}>Limit</Text>
+            </View>
+          </TouchableOpacity>
+          {this.state.openLimit && 
+            <View style={styles.content}>
+              <Limit changeToggle={this.changeToggle}/>
             </View>
           }
-          
-
-          {/* option 2 */}
-          {/* <TouchableOpacity onPress={() => this.toggle('openC')}> 
-            <Text style={{...styles.title, ...styles.option}}>Category2</Text>
-          </TouchableOpacity>
-          {this.state.openC && 
-            <View style={styles.content}>
-              <AddCategory /> 
-              <View >
-                <Text>Hello</Text>
-                <Text>Hello</Text>
-                <Text>Hello</Text>
-              </View>
-            </View>
-          } */}
-
         </View>
       </DismissKeyboard>
     );
@@ -85,29 +92,39 @@ const styles = StyleSheet.create({
     padding:10,
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: '#fff',
+    backgroundColor: MYCOLORS.white,
   },
   title: {
     fontWeight: 'bold',
     fontSize: 18,
     padding:10,
+    color: MYCOLORS.black,
+    fontFamily: FONTS.pr
   },
   content: {
     flex:1,
+    // backgroundColor:'green',
     fontSize: 16,
     padding:10,
-    color: '#333',
+    color: MYCOLORS.black,
+    fontFamily: FONTS.pr
   },
   option:{
-    backgroundColor:'#5DADE2',
+    marginVertical:5,
+    backgroundColor:MYCOLORS.blue,
     borderColor: '#bbb',
     borderWidth: 1,
     borderRadius: 10,
     width:wp('80%'),
     shadowOffset: { width: 1, height: 1 },
-    shadowColor: '#333',
+    shadowColor: MYCOLORS.black,
     shadowOpacity: 0.3,
     shadowRadius: 2,
     alignItems: 'center'
+  },
+  text:{
+    padding: 10,
+    fontSize:16,
+    fontFamily: FONTS.pr
   }
 });

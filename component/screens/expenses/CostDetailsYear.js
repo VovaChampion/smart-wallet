@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { AntDesign } from '@expo/vector-icons';
+import { MYCOLORS } from '../../lib/Styles';
 import CostItem from './CostItem';
 import CategoryItem from './CategoryItem';
 import { connect } from 'react-redux';
@@ -65,7 +66,7 @@ class CostDetailsYear extends Component {
                     style={styles.iconClose}
                     name="close" 
                     size={30} 
-                    color="black" 
+                    color={MYCOLORS.black} 
                   />
                 </TouchableOpacity>
               <FlatList
@@ -97,13 +98,14 @@ export default connect(mapStateToProps)(CostDetailsYear)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: MYCOLORS.white,
   },
   title: {
     padding:10,
     backgroundColor:'red',
     textAlign:'center',
     fontSize:15,
+    color:MYCOLORS.black,
   },
   list:{
     //flex make the list scrollable

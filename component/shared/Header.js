@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { MYCOLORS, FONTS } from '../lib/Styles';
 
 export default function Header({ title, navigation }) {
 
@@ -35,7 +36,8 @@ const styles = StyleSheet.create({
   headerText: {
     fontWeight: 'bold',
     fontSize: 20,
-    color: '#333',
+    color: MYCOLORS.black,
+    fontFamily: FONTS.pr,
     letterSpacing: 1,
   },
   icon: {

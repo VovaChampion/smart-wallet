@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
+import { MYCOLORS, FONTS } from '../../../lib/Styles';
 
 export default class SelectYear extends Component {
   constructor(props){
@@ -39,9 +40,10 @@ export default class SelectYear extends Component {
             },
             dateText:{
               textAlign: 'center',
-              color: '#fff',
+              color: MYCOLORS.black,
+              fontFamily: FONTS.pr,
               fontSize: 18,
-              fontWeight: 'bold',
+              fontWeight: '500',
             }
           }}
           onDateChange={this.handleYearChange}

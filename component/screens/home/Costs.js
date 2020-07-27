@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, withNavigation} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import moment from 'moment';
+import { MYCOLORS, FONTS } from '../../lib/Styles';
 import { connect } from 'react-redux';
+import Emoji from 'react-native-emoji';
 import SelectMonth from './lib/SelectMonth';
 import SelectYear from './lib/SelectYear';
 
@@ -28,7 +30,6 @@ class Costs extends Component {
   }
   
   render () {
-    
     // filter needed elements 
     const filterItems = (arr, query) => {
       return arr.filter(el => el.date.toLowerCase().indexOf(query.toLowerCase()) !== -1)
@@ -39,27 +40,43 @@ class Costs extends Component {
     let totalMonth = filterItems(this.props.expenses, this.state.month).reduce((prev,next) => prev + Number(next.sum),0);
     // console.log(totalYear);
     // console.log(totalMonth);
+
+    // Limit: good is upto 90%, so so is between 90%-110%, bad is more than 110%
+    var limit = this.props.limit.lim;
+    var limitMin = limit*0.9;
+    var limitMax = limit*1.1; 
     
+    selectEmoji = () => {
+      if(totalMonth <= limitMin) {
+        return <Emoji name=":grinning:" style={{fontSize: 65}} />
+      } else if (totalMonth <= limitMax) {
+        return <Emoji name=":neutral_face:" style={{fontSize: 65}} />
+      } else {
+        return <Emoji name=":pensive:" style={{fontSize: 65}} />
+      }
+    }
 
     return (
       <View style={styles.costs}>
-        <View style={styles.data}>
+        <View style={styles.dataMonth}>
           <TouchableOpacity onPress={this.props.showMonthList}>
             <View style={styles.selectDate}>
               <SelectMonth handleMonth={this.handleMonth}/>
             </View>
             {/* toLocaleString() add spaces for the number  */}
-            <Text style={styles.total}>{totalMonth.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
-            {/* <Text style={styles.total}>{totalMonth.toFixed(2)}</Text> */}
+            <Text style={[styles.total, totalMonth <= limitMin ? {color:MYCOLORS.white} : (totalMonth <= limitMax ? {color:MYCOLORS.orange} : {color:MYCOLORS.red}) ]}>{totalMonth.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.data}>
+        <View style={styles.emoji}>
+          { selectEmoji() }
+        </View>
+        <View style={styles.dataYear}>
           <TouchableOpacity onPress={this.props.showYearList}>
             <View style={styles.selectDate}>
               <SelectYear handleYear={this.handleYear}/>
             </View>
             {/* toLocaleString() add spaces for the number  */}
-            <Text style={styles.total}>{totalYear.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
+            <Text style={[styles.total, {color: MYCOLORS.white}]}>{totalYear.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
           </TouchableOpacity>
         </View>
         {/* <View style={styles.icons}>
@@ -78,6 +95,7 @@ class Costs extends Component {
 const mapStateToProps = (state) => {
   return {
     expenses: state.expenses,
+    limit: state.limit
   }
 }
 
@@ -87,31 +105,60 @@ const styles = StyleSheet.create({
   costs: {
     flex:1,
     flexDirection:'row',
+    flexWrap:'wrap',
+    padding:3,
   },
-  data: {
-    flex:1,
-    backgroundColor:'#5DADE2',
-    width:wp('50%'),
+  dataMonth: {
+    backgroundColor:MYCOLORS.blue,
+    width:wp('75%'),
+    marginLeft:2,
+    marginTop:2,
+    marginBottom:2,
+    borderBottomLeftRadius:10,
+    borderTopLeftRadius:10,
+    borderColor: MYCOLORS.blue,
+    height: hp('12%'),
+    justifyContent:'space-between',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1,  
+  },
+  emoji:{
+    alignItems:'center',
+    marginTop:2,
+    width:wp('22%'),
+    height: hp('12%'),
+    borderColor: MYCOLORS.blue,
+    backgroundColor:MYCOLORS.blue,
+    borderBottomRightRadius:10,
+    borderTopRightRadius:10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1, 
+  },
+  dataYear: {
+    backgroundColor:MYCOLORS.blue,
+    width:wp('97%'),
     margin:2,
     borderRadius:10,
-    height: hp('15%'),
+    height: hp('12%'),
     justifyContent:'space-between',
-  },
-  title:  {
-    textAlign: 'center',
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-    padding:7
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1, 
   },
   total:{
-    padding:10,
-    color:'red',
+    paddingTop:12,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: FONTS.pr
   },
   selectDate:{
+    paddingRight:5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
