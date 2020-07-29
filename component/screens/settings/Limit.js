@@ -6,6 +6,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { connect } from 'react-redux';
 import { updateLimit } from '../../../src/actions/costAction';
 import MyPopup from '../../lib/MyPopup';
+import Emoji from 'react-native-emoji';
 
 
 class Limit extends Component {
@@ -76,6 +77,23 @@ class Limit extends Component {
         </View>
 
         <Button onPress={ this.submit } onPressIn={ this.showModal } title='submit' />
+
+        <Text style={[styles.text,styles.title]}>Explanation:</Text>
+        
+        <View style={styles.expl}>
+          <Emoji name=":grinning:" style={{fontSize: 40}} />
+          <Text style={styles.text}>you have not yet reached 90% of your limit</Text>
+        </View>
+
+        <View style={styles.expl}>
+          <Emoji name=":neutral_face:" style={{fontSize: 40}} />
+          <Text style={styles.text}>you have reached 90% - 110% of your limit</Text>
+        </View>
+
+        <View style={styles.expl}>
+          <Emoji name=":pensive:" style={{fontSize: 40}} />
+          <Text style={styles.text}>you are already outside 110% of your limit</Text>
+        </View>
         
         <MyPopup visible={this.state.modalOpen}>
           <View style={styles.modal}>
@@ -152,8 +170,18 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.pr
   },
   text:{
-    padding: 10,
+    padding: 5,
     fontSize:16,
-    fontFamily: FONTS.pr
+    fontFamily: FONTS.pr,
+    flexShrink: 1,
+  },
+  expl: {
+    flexDirection: 'row',
+    padding:5
+  },
+  title:{ 
+    fontWeight:'bold', 
+    textDecorationLine: 'underline', 
+    marginTop:10
   }
 });
