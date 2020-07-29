@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Emoji from 'react-native-emoji';
 import SelectMonth from './lib/SelectMonth';
 import SelectYear from './lib/SelectYear';
+import ProgressBar from './lib/ProgressBar';
 
 class Costs extends Component {
   constructor(props){
@@ -70,6 +71,7 @@ class Costs extends Component {
         <View style={styles.emoji}>
           { selectEmoji() }
         </View>
+
         <View style={styles.dataYear}>
           <TouchableOpacity onPress={this.props.showYearList}>
             <View style={styles.selectDate}>
@@ -78,7 +80,11 @@ class Costs extends Component {
             {/* toLocaleString() add spaces for the number  */}
             <Text style={[styles.total, {color: MYCOLORS.white}]}>{totalYear.toLocaleString(undefined, {minimumFractionDigits: 2})}</Text>
           </TouchableOpacity>
-        </View>
+        </View> 
+        
+        {/* <View style={styles.dataYear}>
+          <ProgressBar />
+        </View> */}
         {/* <View style={styles.icons}>
             <TouchableOpacity onPress={this.editHandler}>
                 <Feather name="edit" size={30} color="white" />
