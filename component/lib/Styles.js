@@ -8,7 +8,7 @@ export const MYCOLORS = {
 }
 
 export const FONTS = {
-  io: 'Iowan Old Style',
-  pr: 'Palatino-Roman',
+  android: 'sans-serif-light',
+  ios: 'Palatino-Roman',
   atbTitle: 'AmericanTypewriter-Bold',
 }

@@ -97,15 +97,7 @@ export default connect(mapStateToProps)(CostDetailsYear)
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: MYCOLORS.white,
-  },
-  title: {
-    padding:10,
-    backgroundColor:'red',
-    textAlign:'center',
-    fontSize:15,
-    color:MYCOLORS.black,
+    flex: 1
   },
   list:{
     //flex make the list scrollable

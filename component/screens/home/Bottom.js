@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
   },
   input: {
-    fontFamily: FONTS.pr,
     marginBottom:10,
     paddingHorizontal: 8,
     paddingVertical: 2,

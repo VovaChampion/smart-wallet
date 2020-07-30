@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, TouchableOpacity, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
-import { MYCOLORS, FONTS } from '../../lib/Styles';
+import { MYCOLORS } from '../../lib/Styles';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { connect } from 'react-redux';
 import { updateLimit } from '../../../src/actions/costAction';
 import MyPopup from '../../lib/MyPopup';
+import Emoji from 'react-native-emoji';
 
 
 class Limit extends Component {
@@ -67,7 +68,6 @@ class Limit extends Component {
         <Text style={styles.text}>Here you can enter your spending limit</Text>
         <View style={styles.item}>
           <TextInput 
-            // style={styles.items} 
             keyboardType ="numeric"
             autoCorrect={false}
             onChangeText={ this.handleInputChange }
@@ -76,6 +76,23 @@ class Limit extends Component {
         </View>
 
         <Button onPress={ this.submit } onPressIn={ this.showModal } title='submit' />
+
+        <Text style={[styles.text,styles.title]}>Explanation:</Text>
+        
+        <View style={styles.expl}>
+          <Emoji name=":grinning:" style={{fontSize: 40}} />
+          <Text style={styles.text}>you have not yet reached 90% of your limit</Text>
+        </View>
+
+        <View style={styles.expl}>
+          <Emoji name=":neutral_face:" style={{fontSize: 40}} />
+          <Text style={styles.text}>you have reached 90% - 110% of your limit</Text>
+        </View>
+
+        <View style={styles.expl}>
+          <Emoji name=":pensive:" style={{fontSize: 40}} />
+          <Text style={styles.text}>you are already outside 110% of your limit</Text>
+        </View>
         
         <MyPopup visible={this.state.modalOpen}>
           <View style={styles.modal}>
@@ -116,9 +133,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: 'row',
-    // backgroundColor:MYCOLORS.blue, 
     justifyContent:'space-between',
-    color:MYCOLORS.black,
     padding: 10,
     marginBottom:10,
     borderColor: '#bbb',
@@ -130,11 +145,6 @@ const styles = StyleSheet.create({
     shadowColor: MYCOLORS.black,
     shadowOpacity: 0.3,
     shadowRadius: 2,
-  },
-  items: {
-    marginRight: 5,
-    color:MYCOLORS.black,
-    fontFamily: FONTS.pr
   },
   modal: {
     width:wp('70%'),
@@ -149,11 +159,19 @@ const styles = StyleSheet.create({
     fontSize:16,
     paddingTop:12,
     textAlign:'center',
-    fontFamily: FONTS.pr
   },
   text:{
-    padding: 10,
+    padding: 5,
     fontSize:16,
-    fontFamily: FONTS.pr
+    flexShrink: 1,
+  },
+  expl: {
+    flexDirection: 'row',
+    padding:5
+  },
+  title:{ 
+    fontWeight:'bold', 
+    textDecorationLine: 'underline', 
+    marginTop:10
   }
 });

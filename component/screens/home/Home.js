@@ -122,10 +122,9 @@ class Home extends Component {
     container: {
       flex: 1,
       height:hp('100%'),
-      backgroundColor: MYCOLORS.white,
+      // backgroundColor: MYCOLORS.white,
       alignItems: 'center',
-      justifyContent: 'center',
-      //fontFamily: FONTS.sf
+      justifyContent: 'center'
     },
     // top: {
     //   flex: 1,
@@ -142,15 +141,7 @@ class Home extends Component {
       flex: 1,
       width:wp('100%'),
       backgroundColor:'pink'
-    },
-    // list: {
-    //   flex: 1,
-    //   width:wp('100%'),
-    //   backgroundColor:'red',
-    //   display:'flex',
-    //   flexDirection:'row',
-    //   overflow:'scroll'
-    // }
+    }
   });
 
 const mapStateToProps = (state) => {
@@ -166,33 +157,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
-
-// const errorHandler = (e, isFatal) => {
-//   Alert.alert('Unexpected error occured',
-//   ` Error: ${(isFatal) ? 'Fatal:' : ''} ${e.name} ${e.message}
-//   We have reported this to our team! Please close the app and start again!
-//   `,
-//   [{
-//     sum:'OK'
-//   }]);
-// }
-
-// setJSExceptionHandler(errorHandler, true);
-
-
-//  check if something is in AsyncStorage
-
-// AsyncStorage.getAllKeys((err, keys) => {
-//   AsyncStorage.multiGet(keys, (error, stores) => {
-//     stores.map((result, i, store) => {
-//       console.log({ [store[i][0]]: store[i][1] });
-//       return true;
-//     });
-//   });
-// });
-
-// remove cost from AsyncStorage
-  // let keys = ['cost'];
-  // AsyncStorage.multiRemove(keys, (err) => {
-  //   console.log('Local storage user info removed!');
-  // });
