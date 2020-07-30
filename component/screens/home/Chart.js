@@ -93,8 +93,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     textAlign:'center',
-    color:MYCOLORS.black,
-    fontFamily: FONTS.pr
+    // fontFamily: FONTS.pr
   },
 });
 const graphStyle = {
@@ -121,6 +120,5 @@ const chartConfig = {
   propsForLabels:{
     fontSize: 10,
     fontWeight:'bold',
-    // fontFamily: 'Times New Roman',
   },
 }

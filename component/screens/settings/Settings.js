@@ -92,14 +92,12 @@ const styles = StyleSheet.create({
     padding:10,
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: MYCOLORS.white,
+    // backgroundColor: MYCOLORS.white,
   },
   title: {
     fontWeight: 'bold',
     fontSize: 18,
     padding:10,
-    color: MYCOLORS.black,
-    fontFamily: FONTS.pr
   },
   content: {
     flex:1,
@@ -125,6 +123,5 @@ const styles = StyleSheet.create({
   text:{
     padding: 10,
     fontSize:16,
-    fontFamily: FONTS.pr
   }
 });

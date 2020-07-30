@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text,  Linking, Button, Image } from 'react-native';
-import { MYCOLORS, FONTS } from '../../lib/Styles';
+import { MYCOLORS } from '../../lib/Styles';
 
 export default function About() {
   return (
@@ -31,25 +31,18 @@ const styles = StyleSheet.create({
     padding:10,
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: MYCOLORS.white,
   },
   title: {
     fontWeight: 'bold',
     fontSize: 18,
     padding:10,
-    color: MYCOLORS.black,
-    fontFamily: FONTS.pr
   },
   content: {
     fontSize: 16,
     padding:10,
-    color: MYCOLORS.black,
-    fontFamily: FONTS.pr
   },
   contact: {
     padding:10,
-    color: MYCOLORS.black,
-    fontFamily: FONTS.pr
   },
   logo: {
     width: '100%',

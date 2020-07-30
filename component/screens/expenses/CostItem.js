@@ -5,7 +5,6 @@ import { MYCOLORS, FONTS } from '../../lib/Styles';
 import { connect } from 'react-redux';
 import { deleteCost } from '../../../src/actions/costAction';
 
-
 class CostItem extends Component {
   constructor(props){
     super(props)
@@ -57,10 +56,6 @@ const styles = StyleSheet.create({
     shadowColor: '#333',
     shadowOpacity: 0.3,
     shadowRadius: 2,
-  },
-  items: {
-    color:MYCOLORS.black,
-    fontFamily: FONTS.pr
   },
   delete: {
     textAlign:'right',

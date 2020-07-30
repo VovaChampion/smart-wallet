@@ -58,6 +58,7 @@ class Costs extends Component {
     }
 
     return (
+       
       <View style={styles.costs}>
         <View style={styles.dataMonth}>
           <TouchableOpacity onPress={this.props.showMonthList}>
@@ -98,6 +99,7 @@ class Costs extends Component {
   }
 }
 
+
 const mapStateToProps = (state) => {
   return {
     expenses: state.expenses,
@@ -107,6 +109,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(Costs);
 
+
 const styles = StyleSheet.create({
   costs: {
     flex:1,
@@ -115,7 +118,6 @@ const styles = StyleSheet.create({
     padding:3,
   },
   dataMonth: {
-    backgroundColor:MYCOLORS.blue,
     width:wp('75%'),
     marginLeft:2,
     marginTop:2,
@@ -123,6 +125,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius:10,
     borderTopLeftRadius:10,
     borderColor: MYCOLORS.blue,
+    backgroundColor:MYCOLORS.blue,
     height: hp('12%'),
     justifyContent:'space-between',
     shadowColor: '#000',
@@ -160,8 +163,7 @@ const styles = StyleSheet.create({
     paddingTop:12,
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
-    fontFamily: FONTS.pr
+    textAlign: 'center'
   },
   selectDate:{
     paddingRight:5,
