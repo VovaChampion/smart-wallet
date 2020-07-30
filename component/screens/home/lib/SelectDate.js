@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
-import { MYCOLORS, FONTS } from '../../../lib/Styles';
+import { MYCOLORS } from '../../../lib/Styles';
 
 export default class SelectDate extends Component {
   constructor(props){
@@ -42,7 +42,6 @@ export default class SelectDate extends Component {
             dateText:{
               textAlign: 'center',
               color: MYCOLORS.black,
-              fontFamily: FONTS.pr,
               fontSize: 18,
             }
           }}

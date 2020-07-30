@@ -66,7 +66,5 @@ const styles = StyleSheet.create({
   },
   items: {
     marginRight: 5,
-    color:MYCOLORS.black,
-    fontFamily: FONTS.pr
   }
 });

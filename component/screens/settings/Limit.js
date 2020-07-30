@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, TouchableOpacity, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
-import { MYCOLORS, FONTS } from '../../lib/Styles';
+import { MYCOLORS } from '../../lib/Styles';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { connect } from 'react-redux';
 import { updateLimit } from '../../../src/actions/costAction';
@@ -68,7 +68,6 @@ class Limit extends Component {
         <Text style={styles.text}>Here you can enter your spending limit</Text>
         <View style={styles.item}>
           <TextInput 
-            // style={styles.items} 
             keyboardType ="numeric"
             autoCorrect={false}
             onChangeText={ this.handleInputChange }
@@ -134,9 +133,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: 'row',
-    // backgroundColor:MYCOLORS.blue, 
     justifyContent:'space-between',
-    color:MYCOLORS.black,
     padding: 10,
     marginBottom:10,
     borderColor: '#bbb',
@@ -148,11 +145,6 @@ const styles = StyleSheet.create({
     shadowColor: MYCOLORS.black,
     shadowOpacity: 0.3,
     shadowRadius: 2,
-  },
-  items: {
-    marginRight: 5,
-    color:MYCOLORS.black,
-    fontFamily: FONTS.pr
   },
   modal: {
     width:wp('70%'),
@@ -167,12 +159,10 @@ const styles = StyleSheet.create({
     fontSize:16,
     paddingTop:12,
     textAlign:'center',
-    fontFamily: FONTS.pr
   },
   text:{
     padding: 5,
     fontSize:16,
-    fontFamily: FONTS.pr,
     flexShrink: 1,
   },
   expl: {

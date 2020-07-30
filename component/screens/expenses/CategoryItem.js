@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { MYCOLORS, FONTS } from '../../lib/Styles';
+import { MYCOLORS } from '../../lib/Styles';
 
 class CategoryItem extends Component {
   constructor(props){
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor:MYCOLORS.blue, 
     justifyContent:'space-between',
-    color:'black',
     padding: 10,
     marginTop: 6,
     borderColor: '#bbb',
@@ -43,7 +42,5 @@ const styles = StyleSheet.create({
   },
   itemText: {
     marginRight: 5,
-    color:MYCOLORS.black,
-    fontFamily: FONTS.pr
   }
 });
