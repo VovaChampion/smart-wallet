@@ -45,7 +45,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "babel-preset-expo": "~8.1.0",
-    "css-loader": "^3.6.0",
+    "css-loader": "^6.8.1",
     "style-loader": "^1.2.1"
   },
   "private": true
