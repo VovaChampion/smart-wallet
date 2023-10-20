@@ -12,7 +12,7 @@
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.5.1",
     "@react-navigation/stack": "^5.5.1",
-    "expo": "^37.0.12",
+    "expo": "^49.0.16",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react": "~16.9.0",
@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "babel-preset-expo": "~8.1.0",
+    "babel-preset-expo": "~9.5.2",
     "css-loader": "^6.8.1",
     "style-loader": "^1.2.1"
   },
